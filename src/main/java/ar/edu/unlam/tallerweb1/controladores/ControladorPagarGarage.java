@@ -34,17 +34,23 @@ public class ControladorPagarGarage {
 	
 	@RequestMapping("/realizarPago")
 	public ModelAndView procesarPago(@RequestParam(value="fecha", required = true) String fecha,
-			@RequestParam(value = "hora", required = true)/*@DateTimeFormat(pattern="HH:mm")*/String hora
+			@RequestParam(value="hasta", required = true) String hasta,
+			@RequestParam(value = "hora", required = true)String hora
 			) throws ParseException {
 		ModelMap modelo = new ModelMap();
-		Integer resultadoDias;
+		Double precioDias;
 		Integer resultadoHoras;
+		Integer resultadoCantidaDias;
 		modelo.put("fecha", fecha);
 		modelo.put("hora", hora);
-		resultadoDias = servicioCobrarTicket.CantidadDias(fecha);
+		modelo.put("hasta",hasta);
+		precioDias = servicioCobrarTicket.PrecioDias(fecha, hasta);
 		resultadoHoras = servicioCobrarTicket.CantidadHoras(hora);
+		resultadoCantidaDias = servicioCobrarTicket.CantidadDiasEnGarage(fecha,hasta);
+		
 		modelo.put("resultadoHoras", resultadoHoras);
-		modelo.put("resultadoDias", resultadoDias);
+		modelo.put("resultadoDias", precioDias);
+		modelo.put("resuladoCantidadDias", resultadoCantidaDias);
 		return new ModelAndView("pagarMonto", modelo);
 	}
 

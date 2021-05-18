@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
+import java.text.ParseException;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -16,6 +17,7 @@ import org.springframework.test.annotation.Rollback;
 
 import com.mysql.cj.xdevapi.SessionFactory;
 
+import ar.edu.unlam.tallerweb1.controladores.ControladorPagarGarage;
 import ar.edu.unlam.tallerweb1.modelo.Auto;
 import ar.edu.unlam.tallerweb1.modelo.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.Cobrar;
@@ -24,6 +26,8 @@ import ar.edu.unlam.tallerweb1.modelo.Garage;
 
 import ar.edu.unlam.tallerweb1.modelo.Ticket;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.servicios.ServicioCobrarTicketImplementacion;
+import ar.edu.unlam.tallerweb1.servicios.ServicioCobrarTickets;
 
 
 	
@@ -168,8 +172,24 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 		
 		
 		
+		@Test
+		@Transactional
+		@Rollback
+		public void testeQueHaceCosas() throws ParseException {
+			
+			ServicioCobrarTicketImplementacion impl = new ServicioCobrarTicketImplementacion();
+			//ServicioCobrarTickets serv = new ServicioCobrarTickets();
+			ControladorPagarGarage  cont1 = new ControladorPagarGarage(impl);
+			 String date = "2021-05-18";
+			 String date2 = "2021-05-22";
+			 String time = "10:15:30";
+			cont1.procesarPago(date, date2, time);
+			Double vo=impl.PrecioDias(date, date2);
+			Double ve = 1600.0;
+			assertEquals(vo,ve);
+			
 
-		
+		}
 		
 	}
 	

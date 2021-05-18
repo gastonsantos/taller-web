@@ -11,9 +11,10 @@
 
 <form action="realizarPago" method="GET">
 <div>
-<h2>Fecha</h2>
-<input type="date" name="fecha"><br>
-
+<h2>Fecha Desde</h2>
+<input type="date" name="fecha">
+<h2>Fecha Hasta</h2>
+<input type="date" name="hasta"><br>
 
 <h2>Hora</h2>
 </div>

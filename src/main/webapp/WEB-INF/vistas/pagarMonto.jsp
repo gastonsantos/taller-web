@@ -8,9 +8,9 @@
 </head>
 <body>
 
-	<h1>Cantidad De dias que Guardo el Auto</h1>
+	<h1>El precio es: </h1>
 		<h3>${resultadoDias}</h3><br>
-		<h1>Cantidad De Horas que Guardo el Auto</h1>
-		<h3>${resultadoHoras}</h3>
+		<h1>Cantidad De Dias que Guardo el Auto</h1>
+		<h3>${resuladoCantidadDias}</h3>
 </body>
 </html>

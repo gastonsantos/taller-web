@@ -7,8 +7,13 @@ import java.time.LocalTime;
 
 import com.google.protobuf.TextFormat.ParseException;
 
+import ar.edu.unlam.tallerweb1.modelo.Garage;
+
 public interface ServicioCobrarTickets {
-	Integer CantidadDias(String fecha/*,String hora*/) throws java.text.ParseException ;
+	Double PrecioDias(String fecha, String hasta) throws java.text.ParseException ;
 	Integer CantidadHoras(String hora);
-	//
+	Integer CantidadDiasEnGarage(String fechaIngreso, String fechaEgreso);
+	
+	
+	
 }
