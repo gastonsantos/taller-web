@@ -1,0 +1,12 @@
+@charset "ISO-8859-1";
+
+.fondo{
+	
+	background-color: black;
+}
+
+form{
+	
+	width: 500px;
+	margin: 0 auto;
+}
