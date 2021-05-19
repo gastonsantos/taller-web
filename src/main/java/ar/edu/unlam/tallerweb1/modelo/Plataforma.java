@@ -15,7 +15,10 @@ public class Plataforma {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	
+	@OneToMany
+	private Usuario usuario;
+	@OneToMany
+	private Garage garages;
 	
 	public Long getId() {
 		return id;

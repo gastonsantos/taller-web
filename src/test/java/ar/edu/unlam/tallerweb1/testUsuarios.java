@@ -175,10 +175,9 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioCobrarTickets;
 		@Test
 		@Transactional
 		@Rollback
-		public void testeQueHaceCosas() throws ParseException {
+		public void testQueDaMontoAPagar() throws ParseException {
 			
 			ServicioCobrarTicketImplementacion impl = new ServicioCobrarTicketImplementacion();
-			//ServicioCobrarTickets serv = new ServicioCobrarTickets();
 			ControladorPagarGarage  cont1 = new ControladorPagarGarage(impl);
 			 String date = "2021-05-18";
 			 String date2 = "2021-05-22";

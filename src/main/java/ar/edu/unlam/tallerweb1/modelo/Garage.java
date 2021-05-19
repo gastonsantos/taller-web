@@ -14,6 +14,7 @@ public class Garage {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String nombre;
 	private String calle;
 	private Integer numero;
 	private String localidad;
@@ -28,6 +29,8 @@ public class Garage {
 	private List<Cochera> cocheras;
 	@ManyToOne
 	private Plataforma plataforma;
+	
+	
 	
 	public Boolean agregoAuto(Auto auto1) {
 		if(capacidad > autosEnGarage.size()) {
@@ -130,6 +133,18 @@ public class Garage {
 
 	public void setPlataforma(Plataforma plataforma) {
 		this.plataforma = plataforma;
+	}
+
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	
 	
