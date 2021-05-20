@@ -7,7 +7,9 @@ public interface RepositorioUsuario {
 	
 	Usuario consultarUsuario (Usuario usuario);
 	
-	Usuario registrarUsuario(Usuario usuario);
+	Usuario verificarCorreo(Usuario usuario);
+	
+	void registrarUsuario(Usuario usuario);
 	
 	// El usuario podra pagar la reserva solo si eligio un garaje, lugar de estacionamiento y plan de alquiler.
 	Usuario pagarReserva();

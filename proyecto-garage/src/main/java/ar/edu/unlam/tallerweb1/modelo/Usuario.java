@@ -23,6 +23,7 @@ public class Usuario {
 	private String apellido;
 	
 	
+	
 	public String getNombre() {
 		return nombre;
 	}

@@ -36,27 +36,34 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario{
 	}
 
 	@Override
-	public Usuario registrarUsuario(Usuario usuario) {
+	public void registrarUsuario(Usuario usuario) {
 		final Session session = sessionFactory.getCurrentSession();
-		return (Usuario) session.save(usuario);
+		session.save(usuario);
 	}
 
 	@Override
 	public Usuario pagarReserva() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public Usuario elegirUnGaraje() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Usuario elegirUnLugarParaEstacionar() {
-		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Usuario verificarCorreo(Usuario usuario) {
+		
+		final Session session = sessionFactory.getCurrentSession();
+		return (Usuario) session.createCriteria(Usuario.class)
+				.add(Restrictions.eq("email", usuario.getEmail()))
+				.uniqueResult();
 	}
 
 }

@@ -4,7 +4,7 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 public interface ServicioRegistro {
 
-	public abstract Usuario agregarUsuario(Usuario usuario);
+	public abstract void agregarUsuario(Usuario usuario);
 	
 	public abstract Usuario pagarReserva();
 	

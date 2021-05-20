@@ -12,17 +12,17 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 @Transactional
 public class ServicioRegistroImpl implements ServicioRegistro{
 
-	private RepositorioUsuario servicioRegistroDao;
+	private RepositorioUsuario servicioRegistro;
 
 	@Autowired
-	public ServicioRegistroImpl(RepositorioUsuario servicioRegistroDao){
-		this.servicioRegistroDao = servicioRegistroDao;
+	public ServicioRegistroImpl(RepositorioUsuario servicioRegistro){
+		this.servicioRegistro = servicioRegistro;
 	}
 	
 	@Override
-	public Usuario agregarUsuario(Usuario usuario) {
+	public void agregarUsuario(Usuario usuario) {
 		
-		return servicioRegistroDao.registrarUsuario(usuario);
+	 servicioRegistro.registrarUsuario(usuario);
 	}
 
 	@Override

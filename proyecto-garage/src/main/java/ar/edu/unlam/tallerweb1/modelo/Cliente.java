@@ -22,11 +22,19 @@ public class Cliente{
 	@ManyToOne
 	private Usuario usuariosCliente;
 	
+	@ManyToOne
+	private Alquiler alquiler;
+	
 	@OneToOne
 	private Auto auto;
 	
 	
-	
+	public Alquiler getAlquiler() {
+		return alquiler;
+	}
+	public void setAlquiler(Alquiler alquiler) {
+		this.alquiler = alquiler;
+	}
 	public Auto getAuto() {
 		return auto;
 	}
