@@ -2,36 +2,50 @@ package ar.edu.unlam.tallerweb1;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.text.ParseException;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.mysql.cj.xdevapi.SessionFactory;
 
 import ar.edu.unlam.tallerweb1.controladores.ControladorPagarGarage;
 import ar.edu.unlam.tallerweb1.modelo.Auto;
 import ar.edu.unlam.tallerweb1.modelo.Cliente;
-import ar.edu.unlam.tallerweb1.modelo.Cobrar;
 import ar.edu.unlam.tallerweb1.modelo.Cochera;
 import ar.edu.unlam.tallerweb1.modelo.Garage;
-
+import ar.edu.unlam.tallerweb1.modelo.Plataforma;
 import ar.edu.unlam.tallerweb1.modelo.Ticket;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioGarage;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioGarageImp;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCobrarTicketImplementacion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCobrarTickets;
+import ar.edu.unlam.tallerweb1.servicios.ServicioGarage;
+import ar.edu.unlam.tallerweb1.servicios.ServicioGarageImplementacion;
+
 
 
 	
 	public class testUsuarios extends SpringTest{
+	  
+		   
 		
 		@Test
 	    @Transactional 
@@ -42,17 +56,17 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioCobrarTickets;
 		@Test
 		@Transactional
 		@Rollback
-		public void testQueAgregaAutoAparticular() {
+		public void testQueAgregaAuto() {
 			Cliente particular1 = new Cliente();
-			particular1.setApellido("Santos");
-			particular1.setNombre("Gaston");
-			particular1.setEmail("gaston@gmail.com");
-			particular1.setDni("33022121");
-			particular1.setRol("normal");
-			particular1.setPassword("12345");
+			particular1.getUsuario().setApellido("Santos");
+			particular1.getUsuario().setNombre("Gaston");
+			particular1.getUsuario().setEmail("gaston@gmail.com");
+			//particular1.setDni("33022121");
+			particular1.getUsuario().setRol("normal");
+			particular1.getUsuario().setPassword("12345");
 			session().save(particular1);
 			Auto auto1 = new Auto();
-			auto1.setCliente1(particular1);
+			auto1.setCliente(particular1);
 			auto1.setMarca("Ford");
 			auto1.setModelo("Falcon");
 			auto1.setPatente("JER752");
@@ -60,23 +74,24 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioCobrarTickets;
 			
 			Auto autobd = session().get(Auto.class, 1L);
 			
-			assertEquals(autobd.getCliente1().getNombre(),"Gaston" );			
+			assertEquals(autobd.getCliente().getUsuario().getNombre(),"Gaston" );			
 		}
 		@Test
 		@Transactional
 		@Rollback
 		public void testQueEntranDosAutosAlGarage() {
 			Cliente particular1 = new Cliente();
-			particular1.setApellido("Santos");
-			particular1.setNombre("Gaston");
-			particular1.setEmail("gaston@gmail.com");
+			particular1.getUsuario().setApellido("Santos");
+			particular1.getUsuario().setNombre("Gaston");
+			particular1.getUsuario().setEmail("gaston@gmail.com");
 			particular1.setDni("33022121");
-			particular1.setRol("normal");
-			particular1.setPassword("12345");
+			particular1.getUsuario().setRol("normal");
+			particular1.getUsuario().setPassword("12345");
 			session().save(particular1);
 			Auto auto1 = new Auto();
 			Auto auto2 = new Auto();
-			auto1.setCliente1(particular1);
+			auto1.setCliente(particular1);
+			auto2.setCliente(particular1);
 			auto1.setMarca("Ford");
 			auto1.setModelo("Falcon");
 			auto1.setPatente("JER752");
@@ -105,11 +120,11 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioCobrarTickets;
 		@Transactional
 		@Rollback
 		public void testQueAutoEntraEnCochera() {
-			Cliente particular1 = new Cliente();
+			Usuario particular1 = new Usuario();
 			particular1.setApellido("Santos");
 			particular1.setNombre("Gaston");
 			particular1.setEmail("gaston@gmail.com");
-			particular1.setDni("33022121");
+			//particular1.setDni("33022121");
 			particular1.setRol("normal");
 			particular1.setPassword("12345");
 			session().save(particular1);
@@ -158,10 +173,10 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioCobrarTickets;
 			
 			t1.setGarage1(g1);
 			
-			Cobrar c = new Cobrar();
-			Double vo = c.montoACobrar();
-			Double ve = 30.0;
-			assertEquals(ve,vo);
+			//Cobrar c = new Cobrar();
+			//Double vo = c.montoACobrar();
+			//Double ve = 30.0;
+			//assertEquals(ve,vo);
 			Integer hora = (int) ChronoUnit.HOURS.between(t1.getHoraEntrada(), LocalTime.now());
 			System.out.println(hora);
 			System.out.println(t1.getFecha());
@@ -189,6 +204,81 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioCobrarTickets;
 			
 
 		}
+	
+		
+		@Test
+		@Transactional
+		@Rollback
+		public void testQueAgregoGarageAbd() {
+			Garage g1 = new Garage();
+			Garage g2 = new Garage();
+			RepositorioGarageImp repo1 = new RepositorioGarageImp(sessionFactory);
+			ServicioGarageImplementacion serv1 = new ServicioGarageImplementacion(repo1);	
+			g1.setCalle("Echeverria");
+			g1.setCapacidad(40);
+			g1.setLocalidad("San Justo");
+			g1.setNombre("Las Palmas");
+			g1.setNumero(2450);
+			g1.setPrecioHora(100.0);
+			g1.setPrecioEstadia(400.0);
+			g1.setPrecioMes(4000.0);
+			g2.setCalle("Echeverria");
+			g2.setCapacidad(40);
+			g2.setLocalidad("San Justo");
+			g2.setNombre("Las Palmas");
+			g2.setNumero(2450);
+			g2.setPrecioHora(100.0);
+			g2.setPrecioEstadia(400.0);
+			g2.setPrecioMes(4000.0);
+			
+			
+			//Agrego el garage
+			serv1.agregarGarage(g1);
+			serv1.agregarGarage(g2);
+			List<Garage> GarageBd= (List<Garage>) session().getSession().createCriteria(Garage.class)
+					.list();
+			assertEquals(GarageBd.size(),2);
+	
+		}
+		
+		@Test
+		@Transactional
+		@Rollback
+		public void testQueEliminoGarageAbd() {
+			Garage g1 = new Garage();
+			Garage g2 = new Garage();
+			RepositorioGarageImp repo1 = new RepositorioGarageImp(sessionFactory);
+			ServicioGarageImplementacion serv1 = new ServicioGarageImplementacion(repo1);	
+			g1.setCalle("Echeverria");
+			g1.setCapacidad(40);
+			g1.setLocalidad("San Justo");
+			g1.setNombre("Las Palmas");
+			g1.setNumero(2450);
+			g1.setPrecioHora(100.0);
+			g1.setPrecioEstadia(400.0);
+			g1.setPrecioMes(4000.0);
+			g2.setCalle("Echeverria");
+			g2.setCapacidad(40);
+			g2.setLocalidad("San Justo");
+			g2.setNombre("Las Palmas");
+			g2.setNumero(2450);
+			g2.setPrecioHora(100.0);
+			g2.setPrecioEstadia(400.0);
+			g2.setPrecioMes(4000.0);
+			//Agrego el garage
+			serv1.agregarGarage(g1);
+			serv1.agregarGarage(g2);
+			//Elimino
+			serv1.eliminarGarage(g1);
+			List<Garage> GarageBd= (List<Garage>) session().getSession().createCriteria(Garage.class)
+					.list();
+			assertEquals(GarageBd.size(),1);
+	
+		}
+		
+		
+		
+		
 		
 	}
 	
