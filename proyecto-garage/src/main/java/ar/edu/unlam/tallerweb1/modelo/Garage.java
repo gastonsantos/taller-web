@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 
 @Entity
@@ -20,23 +19,8 @@ public class Garage {
 	private Double precioSemana;
 	private Double precioMes;
 	private String horario;
-	private String direccion;
 	
-	@ManyToOne
-	private Localidad localidad;
 	
-	public String getDireccion() {
-		return direccion;
-	}
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-	public Localidad getLocalidad() {
-		return localidad;
-	}
-	public void setLocalidad(Localidad localidad) {
-		this.localidad = localidad;
-	}
 	public Long getId() {
 		return id;
 	}
