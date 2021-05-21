@@ -17,8 +17,8 @@
 		<p>Capacidad: ${capacidad}</p><br>
 
 
-<a href="formularioAgregarGarage">Volver </a><br>
-<a href="guardarUsuario">Confirmar</a>
+<a href="homeGarages">Volver </a><br>
+<a href="">Confirmar</a>
 
 
 

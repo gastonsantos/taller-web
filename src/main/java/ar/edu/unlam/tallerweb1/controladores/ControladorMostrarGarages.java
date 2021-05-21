@@ -24,6 +24,51 @@ public class ControladorMostrarGarages {
 		this.servicioGarage = servicioGarage;
 	}
 	
+	@RequestMapping("/homeGarages")
+	public ModelAndView homeGarages() {
+		ModelMap modelo = new ModelMap();
+		return new ModelAndView("HomeGarages", modelo);
+	}
+	
+	@RequestMapping("/formularioAgregarGarage")
+	public ModelAndView mostrarFormularioGaraga() {
+		ModelMap modelo = new ModelMap();
+		Garage garage1 = new Garage();
+		modelo.put("garage", garage1);
+		return new ModelAndView("agregarGarage", modelo);
+	}
+	
+	
+	@RequestMapping(path="confirmarAgregarGarage", method = RequestMethod.POST)
+	public ModelAndView datosGarage( 
+		@ModelAttribute ("garage") Garage garage1,
+		@RequestParam(value="nombre", required= false)String nombre,
+		@RequestParam(value="calle", required = false)String calle,
+		@RequestParam(value="numero", required = false)Integer numero, 
+		@RequestParam(value="localidad", required=false)String localidad,
+		@RequestParam(value="precioHora", required=true)Double precioHora,
+		@RequestParam(value="precioEstadia", required=true)Double precioEstadia,
+		@RequestParam(value="precioMes", required=true)Double precioMes,
+		@RequestParam(value="capacidad", required=true)Integer capacidad
+	){
+	ModelMap modelo = new ModelMap();
+	modelo.put("nombre", nombre);
+	modelo.put("calle", calle);
+	modelo.put("numero", numero);
+	modelo.put("localidad", localidad);
+	modelo.put("precioHora", precioHora);
+	modelo.put("precioEstadia", precioEstadia);
+	modelo.put("precioMes", precioMes);
+	modelo.put("capacidad", capacidad);
+	servicioGarage.agregarGarage(garage1);
+		return new ModelAndView("HomeGarages", modelo);
+	}
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping("/buscarGarage")
 	public ModelAndView mostrarBuscarGaraga() {

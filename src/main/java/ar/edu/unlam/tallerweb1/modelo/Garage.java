@@ -22,10 +22,10 @@ public class Garage {
 	private Double precioEstadia;
 	private Double precioMes;
 	private Integer capacidad;
-	
+	/*
 	@ManyToOne
 	private Dueño dueño;
-	
+	*/
 	
 	public Long getId() {
 		return id;
@@ -100,7 +100,7 @@ public class Garage {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
+/*
 	public Dueño getDueño() {
 		return dueño;
 	}
@@ -111,7 +111,7 @@ public class Garage {
 	
 	
 	
-	
+	*/
 	
 	
 }

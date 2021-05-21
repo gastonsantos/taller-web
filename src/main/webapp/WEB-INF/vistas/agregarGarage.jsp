@@ -43,10 +43,10 @@
 			        <br>
 		        </c:if>	
 		        
-		        <p class="text-center">
-		        	Confirmar<a href="">Confirmar Datos</a>
 		        
-		        </p>
+		        <a href="homeGarages">Volver</a>
+		        
+		      
 		        <p class="text-center">
 		        <a href="">Cambiar TODO</a>
 		        </p>

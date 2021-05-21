@@ -14,5 +14,8 @@
 		<h4>Precio: ${precioHora} </h4><br>
 		<h4>Estadia: ${precioEstadia} </h4><br>
 		<h4>Mes: ${precioMes} </h4><br>
+		
+		<a href="buscarGarage">Volver</a><br>
+		<a href="">Reservar Lugar</a>
 </body>
 </html>
