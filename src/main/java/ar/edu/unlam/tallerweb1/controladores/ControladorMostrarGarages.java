@@ -47,7 +47,7 @@ public class ControladorMostrarGarages {
 			modelo.put("precioHora", garageBuscado.getPrecioHora());
 			modelo.put("precioEstadia", garageBuscado.getPrecioEstadia());
 			modelo.put("precioMes",  garageBuscado.getPrecioMes());
-			//modelo.put("idPlataforma", garageBuscado.getPlataforma().getId());
+			
 		
 	return new ModelAndView("DatosGaragesPorPantalla", modelo);
 	}

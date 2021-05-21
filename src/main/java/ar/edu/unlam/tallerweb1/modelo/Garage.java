@@ -23,16 +23,8 @@ public class Garage {
 	private Double precioMes;
 	private Integer capacidad;
 	
-	
-	
-	
-	@ManyToOne
-	private Plataforma plataforma;
-/*
 	@ManyToOne
 	private Dueño dueño;
-	
-	*/
 	
 	
 	public Long getId() {
@@ -100,20 +92,6 @@ public class Garage {
 	}
 
 
-
-
-
-	public Plataforma getPlataforma() {
-		return plataforma;
-	}
-
-
-
-	public void setPlataforma(Plataforma plataforma) {
-		this.plataforma = plataforma;
-	}
-
-
 	public String getNombre() {
 		return nombre;
 	}
@@ -122,7 +100,7 @@ public class Garage {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-/*
+
 	public Dueño getDueño() {
 		return dueño;
 	}
@@ -132,7 +110,7 @@ public class Garage {
 	}
 	
 	
-	*/
+	
 	
 	
 	
