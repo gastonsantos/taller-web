@@ -16,31 +16,39 @@ public class Cliente{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	private String nombre;
+	private String apellido;
 	private Integer dni;
 	private String sexo;
+	private String email;
+	private String password;
+
 	
-	@ManyToOne
-	private Usuario usuariosCliente;
-	
-	@ManyToOne
-	private Alquiler alquiler;
-	
-	@OneToOne
-	private Auto auto;
-	
-	
-	public Alquiler getAlquiler() {
-		return alquiler;
+	public String getEmail() {
+		return email;
 	}
-	public void setAlquiler(Alquiler alquiler) {
-		this.alquiler = alquiler;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public Auto getAuto() {
-		return auto;
+	public String getPassword() {
+		return password;
 	}
-	public void setAuto(Auto auto) {
-		this.auto = auto;
+	public void setPassword(String password) {
+		this.password = password;
 	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getApellido() {
+		return apellido;
+	}
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+	
 	public Integer getDni() {
 		return dni;
 	}
@@ -60,16 +68,7 @@ public class Cliente{
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Usuario getUsuariosCliente() {
-		return usuariosCliente;
-	}
-	public void setUsuariosCliente(Usuario usuariosCliente) {
-		this.usuariosCliente = usuariosCliente;
-	}
-	@Override
-	public String toString() {
-		return "Cliente [id=" + id + ", dni=" + dni + ", sexo=" + sexo + ", usuariosCliente=" + usuariosCliente + "]";
-	}
+
 	
 	
 }

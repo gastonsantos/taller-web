@@ -1,14 +1,20 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.Auto;
+import ar.edu.unlam.tallerweb1.modelo.Cliente;
 
 public interface ServicioRegistro {
 
-	public abstract void agregarUsuario(Usuario usuario);
 	
-	public abstract Usuario pagarReserva();
+	public abstract void agregarCliente(Cliente cliente);
 	
-	public abstract Usuario elegirUnGaraje();
+	public abstract Cliente pagarReserva();
 	
-	public abstract Usuario elegirUnLugarParaEstacionar(); 
+	public abstract Cliente elegirUnGaraje();
+	
+	public abstract Cliente elegirUnLugarParaEstacionar(); 
+	
+	public abstract void registrarAuto(Auto auto);
+	
+	
 }

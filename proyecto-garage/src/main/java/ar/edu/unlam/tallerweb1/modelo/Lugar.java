@@ -5,23 +5,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
-public class Auto {
+public class Lugar {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String patente;
-	
-	@OneToOne
-	private Cliente cliente;
+	private Integer[][] lugares;
 	
 	@ManyToOne
 	private Garage garage;
-	
 
 	public Long getId() {
 		return id;
@@ -31,12 +26,12 @@ public class Auto {
 		this.id = id;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public Integer[][] getLugares() {
+		return lugares;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setLugares(Integer[][] lugares) {
+		this.lugares = lugares;
 	}
 
 	public Garage getGarage() {
@@ -46,15 +41,6 @@ public class Auto {
 	public void setGarage(Garage garage) {
 		this.garage = garage;
 	}
-
-	public String getPatente() {
-		return patente;
-	}
-
-	public void setPatente(String patente) {
-		this.patente = patente;
-	}
-
 	
 	
 }

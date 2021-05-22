@@ -10,14 +10,14 @@ import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.controladores.ControladorLogin;
 import ar.edu.unlam.tallerweb1.controladores.ControladorRegistro;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuarioImpl;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioClienteImpl;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLoginImpl;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRegistroImpl;
 
 
 public class testUsuarios extends SpringTest{
-	RepositorioUsuarioImpl repositorio;
+	RepositorioClienteImpl repositorio;
 	ServicioLoginImpl servicioLogin = new ServicioLoginImpl(repositorio);
 	ControladorLogin cont = new ControladorLogin(servicioLogin);
 	

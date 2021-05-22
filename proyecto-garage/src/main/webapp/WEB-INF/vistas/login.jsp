@@ -26,7 +26,7 @@
 				<%--Definicion de un form asociado a la accion /validar-login por POST. Se indica ademas que el model attribute se--%>
 				<%--debe referenciar con el nombre usuario, spring mapea los elementos de la vista con los atributos de dicho objeto--%>
 					<%--para eso debe coincidir el valor del elemento path de cada input con el nombre de un atributo del objeto --%>
-				<form:form action="validar-login" method="POST" modelAttribute="usuario">
+				<form:form action="validar-login" method="POST" modelAttribute="cliente">
 				  <div class="mb-3">
 				    <label for="email" class="form-label">Email</label>
 				    <form:input type="email" class="form-control" id="email" path="email" aria-describedby="emailHelp"/>

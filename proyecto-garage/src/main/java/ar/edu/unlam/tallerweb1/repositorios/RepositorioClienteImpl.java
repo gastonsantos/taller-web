@@ -1,5 +1,8 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import ar.edu.unlam.tallerweb1.modelo.Auto;
+import ar.edu.unlam.tallerweb1.modelo.Cliente;
+import ar.edu.unlam.tallerweb1.modelo.DuenioCochera;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,60 +13,92 @@ import org.springframework.stereotype.Repository;
 // implelemtacion del repositorio de usuarios, la anotacion @Repository indica a Spring que esta clase es un componente que debe
 // ser manejado por el framework, debe indicarse en applicationContext que busque en el paquete ar.edu.unlam.tallerweb1.dao
 // para encontrar esta clase.
-@Repository("repositorioUsuario")
-public class RepositorioUsuarioImpl implements RepositorioUsuario{
+@Repository("repositorioCliente")
+public class RepositorioClienteImpl implements RepositorioCliente{
 
 	// Como todo repositorio maneja acciones de persistencia, normalmente estará inyectado el session factory de hibernate
 	// el mismo está difinido en el archivo hibernateContext.xml
 	private SessionFactory sessionFactory;
 
     @Autowired
-	public RepositorioUsuarioImpl(SessionFactory sessionFactory){
+	public RepositorioClienteImpl(SessionFactory sessionFactory){
 		this.sessionFactory = sessionFactory;
+	}
+    
+    @Override
+	public void registrarCliente(Cliente cliente) {
+		
+		final Session session = sessionFactory.getCurrentSession();
+		session.save(cliente);
 	}
 
 	@Override
-	public Usuario consultarUsuario(Usuario usuario) {
+	public Cliente consultarCliente(Cliente cliente) {
 
 		// Se obtiene la sesion asociada a la transaccion iniciada en el servicio que invoca a este metodo y se crea un criterio
 		// de busqueda de Usuario donde el email y password sean iguales a los del objeto recibido como parametro
 		// uniqueResult da error si se encuentran más de un resultado en la busqueda.
 		final Session session = sessionFactory.getCurrentSession();
-		return (Usuario) session.createCriteria(Usuario.class)
-				.add(Restrictions.eq("email", usuario.getEmail()))
-				.add(Restrictions.eq("password", usuario.getPassword()))
+		return (Cliente) session.createCriteria(Cliente.class)
+				.add(Restrictions.eq("email", cliente.getEmail()))
+				.add(Restrictions.eq("password", cliente.getPassword()))
 				.uniqueResult();
 	}
+	
 
 	@Override
-	public void registrarUsuario(Usuario usuario) {
+	public Cliente verificarCorreo(Cliente cliente) {
+		
 		final Session session = sessionFactory.getCurrentSession();
-		session.save(usuario);
+		return (Cliente) session.createCriteria(Cliente.class)
+				.add(Restrictions.eq("email", cliente.getEmail()))
+				.uniqueResult();
 	}
-
+	
 	@Override
-	public Usuario pagarReserva() {
+	public Cliente pagarReserva() {
 		
 		return null;
 	}
 
 	@Override
-	public Usuario elegirUnGaraje() {
+	public Cliente elegirUnGaraje() {
 		return null;
 	}
 
 	@Override
-	public Usuario elegirUnLugarParaEstacionar() {
+	public Cliente elegirUnLugarParaEstacionar() {
 		return null;
 	}
 
 	@Override
-	public Usuario verificarCorreo(Usuario usuario) {
+	public void registrarAuto(Auto auto) {
 		
 		final Session session = sessionFactory.getCurrentSession();
-		return (Usuario) session.createCriteria(Usuario.class)
-				.add(Restrictions.eq("email", usuario.getEmail()))
+		session.save(auto);
+	}
+
+	@Override
+	public Cliente consultarPorDni(Cliente cliente) {
+		
+		final Session session = sessionFactory.getCurrentSession();
+		return (Cliente) session.createCriteria(Cliente.class)
+				.add(Restrictions.eq("dni", cliente.getDni()))
 				.uniqueResult();
 	}
+
+	
+
+
+	
+
+	
+
+	
+
+	
+
+	
+
 
 }
