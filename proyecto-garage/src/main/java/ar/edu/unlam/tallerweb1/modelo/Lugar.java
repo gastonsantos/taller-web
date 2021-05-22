@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Lugar {
@@ -17,6 +18,9 @@ public class Lugar {
 	
 	@ManyToOne
 	private Garage garage;
+	
+	@OneToOne
+	private Auto auto;
 
 	public Long getId() {
 		return id;
@@ -41,6 +45,15 @@ public class Lugar {
 	public void setGarage(Garage garage) {
 		this.garage = garage;
 	}
+
+	public Auto getAuto() {
+		return auto;
+	}
+
+	public void setAuto(Auto auto) {
+		this.auto = auto;
+	}
+	
 	
 	
 }
