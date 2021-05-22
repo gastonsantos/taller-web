@@ -36,13 +36,15 @@ public class ControladorRegistroAuto {
 	@RequestMapping(path="/procesarRegistroAuto", method=RequestMethod.POST)
 	public ModelAndView procesarRegistroAuto(
 			@ModelAttribute("auto") Auto auto,
-			@RequestParam(value="dni", required=false) Integer dni)
+			@RequestParam(value="dni", required=false) Integer dni
+			)
 			{
 		ModelMap modelo = new ModelMap();
-		
-				 if(auto.getPatente() != null ){
+				
+				 if(auto.getPatente() != null){
 				modelo.put("mensaje", "Auto registrado correctamente ");
 				servicioRegistro.registrarAuto(auto);
+				servicioRegistro.asignarAuto(auto, dni);
 				
 				
 		}else {

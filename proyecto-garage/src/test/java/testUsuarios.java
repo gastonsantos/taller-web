@@ -1,14 +1,21 @@
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.controladores.ControladorLogin;
 import ar.edu.unlam.tallerweb1.controladores.ControladorRegistro;
+import ar.edu.unlam.tallerweb1.modelo.Auto;
+import ar.edu.unlam.tallerweb1.modelo.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioClienteImpl;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
@@ -17,10 +24,9 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioRegistroImpl;
 
 
 public class testUsuarios extends SpringTest{
-	RepositorioClienteImpl repositorio;
-	ServicioLoginImpl servicioLogin = new ServicioLoginImpl(repositorio);
-	ControladorLogin cont = new ControladorLogin(servicioLogin);
 	
+	@Inject
+	private SessionFactory sessionFactory;
 	@Test
     @Transactional 
     @Rollback
@@ -31,25 +37,69 @@ public class testUsuarios extends SpringTest{
 	@Test
 	@Transactional
 	@Rollback
-	public void queSePuedaConsultarUnUsuarioALaBD(){
+	public void queSePuedaRegistrarUnUsuarioALaBD(){
 		
-		Usuario usuario1 = new Usuario();
+		Cliente usuario1 = new Cliente();
+		Cliente usuario2 = new Cliente();
+		
+		RepositorioClienteImpl repo = new RepositorioClienteImpl(sessionFactory);
+		ServicioRegistroImpl serv = new ServicioRegistroImpl(repo);
 		usuario1.setNombre("pepe");
 		usuario1.setApellido("rodriguez");
 		usuario1.setEmail("pepito@hotmail.com");
 		usuario1.setPassword("123");
 		
-		servicioLogin.consultarUsuario(usuario1);
+		usuario2.setNombre("jorge");
+		usuario2.setApellido("asd");
+		usuario2.setEmail("jorge@hotmail.com");
+		usuario2.setPassword("321");
 		
-		/*session().save(usuario1);
+		serv.agregarCliente(usuario1);
+		serv.agregarCliente(usuario2);
 		
-		Usuario usuariosBD = session().get(Usuario.class, (1L));
-		assertEquals(usuariosBD.getApellido(), "rodriguez"); */
+		List<Cliente> clientesBD =  (List<Cliente>) session().getSession().createCriteria(Cliente.class)
+									.list();
 		
+		assertEquals(clientesBD.size(), 2);
 		
+	}
+	
+	@Test
+	@Transactional
+	@Rollback
+	public void queSePuedaConcultarUnClienteALaBD() {
+		
+		Cliente usuario1 = new Cliente();
+		Cliente usuario2 = new Cliente();
+		
+		RepositorioClienteImpl repo = new RepositorioClienteImpl(sessionFactory);
+		ServicioRegistroImpl reg = new ServicioRegistroImpl(repo);
+		ServicioLoginImpl log = new ServicioLoginImpl(repo);
+		usuario1.setNombre("pepe");
+		usuario1.setApellido("rodriguez");
+		usuario1.setEmail("pepito@hotmail.com");
+		usuario1.setPassword("123");
+		usuario1.setDni(1234564);
+		
+		usuario2.setNombre("jorge");
+		usuario2.setApellido("asd");
+		usuario2.setEmail("jorge@hotmail.com");
+		usuario2.setPassword("321");
+		usuario2.setDni(42671687);
+		
+		reg.agregarCliente(usuario1);
+		reg.agregarCliente(usuario2);
+		
+		List<Cliente> clienteEncontrado =  (List<Cliente>) sessionFactory.getCurrentSession()
+				.createCriteria(Cliente.class)
+				.add(Restrictions.eq("dni", usuario1.getDni()))
+				.list();
+		
+		assertEquals(1, clienteEncontrado.size());
 		
 		
 	}
 	
+
 
 }

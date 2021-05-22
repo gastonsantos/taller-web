@@ -24,6 +24,7 @@ public class ServicioRegistroImpl implements ServicioRegistro{
 	public void agregarCliente(Cliente cliente) {
 		
 	 servicioRegistro.registrarCliente(cliente);
+	 
 	}
 
 	@Override
@@ -49,6 +50,13 @@ public class ServicioRegistroImpl implements ServicioRegistro{
 		
 		servicioRegistro.registrarAuto(auto);
 	}
+
+	@Override
+	public void asignarAuto(Auto auto, Integer dni) {
+		
+		servicioRegistro.asignarAuto(auto, dni);
+	}
+
 
 	
 	

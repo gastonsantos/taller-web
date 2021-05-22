@@ -16,5 +16,5 @@ public interface ServicioRegistro {
 	
 	public abstract void registrarAuto(Auto auto);
 	
-	
+	public abstract void asignarAuto(Auto auto, Integer dni);
 }

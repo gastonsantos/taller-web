@@ -18,7 +18,7 @@ public interface RepositorioCliente {
 	
 	void registrarAuto(Auto auto);
 	
-	
+	void asignarAuto(Auto auto, Integer dni);
 	// El usuario podra pagar la reserva solo si eligio un garaje, lugar de estacionamiento y plan de alquiler.
 	Cliente pagarReserva();
 	

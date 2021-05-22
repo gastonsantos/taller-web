@@ -25,7 +25,7 @@
 		  </div>
 		  <div class="col-md-6">			
 		    <label for="dni" class="form-label control-label">DNI</label>
-		    <input type="number" class="form-control" id="cliente" name="dni">
+		    <input type="number" class="form-control" id="dni">
 		  </div>
 		  <div class="col-12">
 		    <button type="submit" class="btn btn-primary control-label mb-3">Registrar</button>

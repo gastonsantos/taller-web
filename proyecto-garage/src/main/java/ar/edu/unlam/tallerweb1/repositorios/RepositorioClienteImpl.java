@@ -4,6 +4,10 @@ import ar.edu.unlam.tallerweb1.modelo.Auto;
 import ar.edu.unlam.tallerweb1.modelo.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.DuenioCochera;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -30,6 +34,8 @@ public class RepositorioClienteImpl implements RepositorioCliente{
 		
 		final Session session = sessionFactory.getCurrentSession();
 		session.save(cliente);
+		List<Cliente> clientesBD =  (List<Cliente>) session.getSession().createCriteria(Cliente.class)
+				.list();
 	}
 
 	@Override
@@ -87,7 +93,22 @@ public class RepositorioClienteImpl implements RepositorioCliente{
 				.uniqueResult();
 	}
 
-	
+	@Override
+	public void asignarAuto(Auto auto, Integer dni) {
+		final Session session = sessionFactory.getCurrentSession();
+		Integer dniBuscado = dni;
+		List<Cliente> clientesBD =  (List<Cliente>) session.getSession().createCriteria(Cliente.class)
+				.list();
+		List<Auto> autosBD =  (List<Auto>) session.getSession().createCriteria(Auto.class)
+				.list();
+		for(Cliente cliente : clientesBD) {
+			if(cliente.getDni().equals(dniBuscado)) {
+				auto.setCliente(cliente);
+				System.out.println(auto);
+			}
+		}
+	}
+
 
 
 	
