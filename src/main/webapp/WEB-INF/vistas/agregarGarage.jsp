@@ -34,7 +34,7 @@
 					<form:input path="precioEstadia" id="precioEstadia" name="precioEstadia" type="text" class="form-control"/><p>PRECIO ESTADIA</p>
 					<form:input path="precioMes" id="precioMes" name="precioMes" type="text" class="form-control"/><p>PRECIO MES</p>
 					<form:input path="capacidad" id="capacidad" name="capacidad" type="text" class="form-control"/><p>CAPACIDAD</p>	
-					<button class="btn btn-lg btn-primary btn-block" Type="Submit">Registrarse</button>
+					<button class="btn btn-lg btn-primary btn-block" Type="Submit">Agregar</button>
 				</form:form>
 
 				<%--Bloque que es visible si el elemento error no está vacío	--%>
@@ -44,11 +44,11 @@
 		        </c:if>	
 		        
 		        
-		        <a href="homeGarages">Volver</a>
+		       
 		        
 		      
 		        <p class="text-center">
-		        <a href="">Cambiar TODO</a>
+		        <a href="lista">Volver</a>
 		        </p>
 		        
 			</div>

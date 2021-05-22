@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +24,13 @@ public class ServicioGarageImplementacion implements ServicioGarage {
 		return repoGarage.agregarGarage(garage1);
 	}
 	
-	public Boolean eliminarGarage(Garage garage1) {
-		return repoGarage.EliminarGarage(garage1);
+	public Boolean eliminarGarage(Long id) {
+		return repoGarage.EliminarGarage(id);
 	}
 	
-	public Garage consultarGarage(Garage garage1) {
+	public List<Garage> consultarGarage() {
 		
-		return repoGarage.consultarGarage(garage1);
+		return repoGarage.consultarGarage();
 	}
 	
 	

@@ -1,11 +1,13 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import java.util.List;
+
 import ar.edu.unlam.tallerweb1.modelo.Garage;
 
 public interface RepositorioGarage {
 
-	Garage consultarGarage(Garage garage1);
-	Boolean EliminarGarage(Garage garage1);
+	List<Garage> consultarGarage();
+	Boolean EliminarGarage(Long id);
 	Boolean agregarGarage(Garage garage1);
 	
 }
