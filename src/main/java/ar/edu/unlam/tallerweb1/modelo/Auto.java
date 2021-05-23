@@ -14,19 +14,22 @@ public class Auto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 	private String patente;
-	
 	@OneToOne
 	private Cliente cliente;
-	
 	@ManyToOne
 	private Garage garage;
-	
 	private String marca;
-	
+	private Cliente cliente;
 	private String modelo;
 	
+	public Cliente getCliente() {
+		return cliente;
+	}
+  
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 
 	public Long getId() {
 		return id;
@@ -34,14 +37,6 @@ public class Auto {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
 	}
 
 	public Garage getGarage() {
@@ -60,8 +55,6 @@ public class Auto {
 		this.patente = patente;
 	}
 	
-	
-
 	public String getMarca() {
 		return marca;
 	}
@@ -69,11 +62,8 @@ public class Auto {
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
-	
-	
-	
 
-	public String getModelo() {
+	public String getModelo(){
 		return modelo;
 	}
 
@@ -86,7 +76,4 @@ public class Auto {
 		return "Auto [id=" + id + ", patente=" + patente + ", cliente=" + cliente + ", garage=" + garage + ", marca="
 				+ marca + ", modelo=" + modelo + "]";
 	}
-
-	
-	
 }

@@ -9,14 +9,17 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Plataforma {
+public class Localidad {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	private String localidad;
 	
-	
+	@OneToMany
+	private List<Garage> garage;
+
 	public Long getId() {
 		return id;
 	}
@@ -25,8 +28,13 @@ public class Plataforma {
 		this.id = id;
 	}
 
+	public String getLocalidad() {
+		return localidad;
+	}
 
-	
+	public void setLocalidad(String localidad) {
+		this.localidad = localidad;
+	}
 	
 	
 }

@@ -17,7 +17,7 @@ public abstract class SpringTest {
 
     // Tiene inyectado el session factory para que los test que hereden de éste tengan acceso al mismo
     @Inject
-    private SessionFactory sessionFactory; //se encarga de interactuar entre la aplicacion y la base de datos. Genera sesiones para interactuar. 
+	protected SessionFactory sessionFactory; //se encarga de interactuar entre la aplicacion y la base de datos. Genera sesiones para interactuar. 
 
     // Metodo para obtener una sesion de base de datos
     protected Session session() {
