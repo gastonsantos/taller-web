@@ -52,7 +52,41 @@ public class RepositorioGarageImp implements RepositorioGarage {
 	}
 	
 
-	
+	@SuppressWarnings({ "deprecation", "unchecked" })
+	@Override
+	public List<Garage> buscarPorLocalidad(Garage garage1) {
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Garage.class)
+				.add(Restrictions.eq("localidad", garage1.getLocalidad()))
+				.list();
+	}
+
+	@SuppressWarnings({ "deprecation", "unchecked" })
+	@Override
+	public List<Garage> buscarPorPrecioHora(Double precio1, Double precio2) {
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Garage.class)
+		.add(Restrictions.between("precioHora", precio1, precio2))
+		.list();
+	}
+
+	@SuppressWarnings({ "deprecation", "unchecked" })
+	@Override
+	public List<Garage> buscarPorPrecioMes(Double precio1, Double precio2) {
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Garage.class)
+		.add(Restrictions.between("precioMes", precio1, precio2))
+		.list();
+	}
+
+	@SuppressWarnings({ "deprecation", "unchecked" })
+	@Override
+	public List<Garage> buscarPorPrecioEstadia(Double precio1, Double precio2) {
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Garage.class)
+		.add(Restrictions.between("precioEstadia", precio1, precio2))
+		.list();
+	}
 
 	  
 
