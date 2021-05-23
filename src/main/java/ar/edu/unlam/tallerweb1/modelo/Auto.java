@@ -20,7 +20,6 @@ public class Auto {
 	@ManyToOne
 	private Garage garage;
 	private String marca;
-	private Cliente cliente;
 	private String modelo;
 	
 	public Cliente getCliente() {
