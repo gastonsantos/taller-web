@@ -34,8 +34,16 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 		return (Usuario) session.createCriteria(Usuario.class)
 				.add(Restrictions.eq("email", usuario.getEmail()))
 				.add(Restrictions.eq("password", usuario.getPassword()))
-				.add(Restrictions.eq("nombre",usuario.getNombre()))
-				.add(Restrictions.eq("apellido",usuario.getApellido()));
+				.uniqueResult();
 	}
+	
+	@Override 
+	public Boolean guardarUsuario(Usuario usuario) {
+		final Session session = sessionFactory.getCurrentSession();
+		
+		session.save("Usuario", usuario);
+		return true;
+	}
+
 
 }

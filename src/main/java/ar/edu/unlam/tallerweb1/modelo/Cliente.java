@@ -4,15 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Cliente extends Usuario{
+public class Cliente{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String dni;
-
+	@ManyToOne
+	private Usuario usuario;
 	
 	
 	public String getDni() {
@@ -26,6 +28,12 @@ public class Cliente extends Usuario{
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 

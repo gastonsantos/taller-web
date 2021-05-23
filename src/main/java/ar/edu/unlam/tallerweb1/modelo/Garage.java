@@ -1,19 +1,18 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Garage {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String nombre;
 	private String calle;
 	private Integer numero;
 	private String localidad;
@@ -22,22 +21,16 @@ public class Garage {
 	private Double precioMes;
 	private Integer capacidad;
 	
-	@OneToMany
-	private List<Auto> autosEnGarage;
-	@OneToMany
-	private List<Cochera> cocheras;
+	
+	
+	
 	@ManyToOne
 	private Plataforma plataforma;
+/*
+	@ManyToOne
+	private Dueño dueño;
 	
-	public Boolean agregoAuto(Auto auto1) {
-		if(capacidad > autosEnGarage.size()) {
-			autosEnGarage.add(auto1);
-			return true;
-		}else {
-			return false;
-		}
-	}
-	
+	*/
 	
 	
 	public Long getId() {
@@ -104,21 +97,7 @@ public class Garage {
 		this.capacidad = capacidad;
 	}
 
-	public List<Auto> getAutosEnGarage() {
-		return autosEnGarage;
-	}
 
-	public void setAutosEnGarage(List<Auto> autosEnGarage) {
-		this.autosEnGarage = autosEnGarage;
-	}
-
-	public List<Cochera> getCocheras() {
-		return cocheras;
-	}
-
-	public void setCocheras(List<Cochera> cocheras) {
-		this.cocheras = cocheras;
-	}
 
 
 
@@ -131,9 +110,27 @@ public class Garage {
 	public void setPlataforma(Plataforma plataforma) {
 		this.plataforma = plataforma;
 	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+/*
+	public Dueño getDueño() {
+		return dueño;
+	}
+
+	public void setDueño(Dueño dueño) {
+		this.dueño = dueño;
+	}
 	
 	
-	
+	*/
 	
 	
 	

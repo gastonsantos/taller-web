@@ -16,9 +16,17 @@ public class Auto {
 	private String modelo;
 	
 	@ManyToOne
-	private Cliente cliente1;
+	private Cliente cliente;
+	@ManyToOne
+	private Garage garage;
 	
 	
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -37,18 +45,21 @@ public class Auto {
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
-	public String getModelo() {
+	public String getModelo(){
 		return modelo;
 	}
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
 	}
-	public Cliente getCliente1() {
-		return cliente1;
+
+	public Garage getGarage() {
+		return garage;
 	}
-	public void setCliente1(Cliente cliente1) {
-		this.cliente1 = cliente1;
+	public void setGarage(Garage garage) {
+		this.garage = garage;
 	}
+	
+	
 	
 	
 }
