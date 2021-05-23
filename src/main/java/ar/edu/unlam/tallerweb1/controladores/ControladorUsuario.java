@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,9 +10,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuarioImpl;
 
 @Controller
-public class ControladorGarage {
+
+public class ControladorUsuario {
+
+	
+	@Autowired
+	private RepositorioUsuarioImpl uc;
+	
 
 	
 	@RequestMapping("/formularioGarage")
@@ -44,8 +52,10 @@ public class ControladorGarage {
 			
 			if(usuario.getPassword().equals(repass)) {
 				//Lo guardaria en la base de datos
-			
+				uc.guardarUsuario(usuario);
 				modelo.put("mensaje", "Usuario Agregado");
+				
+				
 			}else {
 				modelo.put("mensaje", "Password no son iguales");
 				

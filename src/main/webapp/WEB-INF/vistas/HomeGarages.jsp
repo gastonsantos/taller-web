@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Probar si Funciona</title>
+<title>Home Garages</title>
 </head>
 <body>
-<h1>Probar si funciona porque no funca</h1>
+<h2>Garages</h2>
+
+<h3><a href="buscarGarage">Buscar</a><br></h3>
+<h3><a href="formularioAgregarGarage">Agregar</a></h3>
 </body>
 </html>

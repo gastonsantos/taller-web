@@ -14,6 +14,7 @@ public class Garage {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String nombre;
 	private String calle;
 	private Integer numero;
 	private String localidad;
@@ -21,24 +22,10 @@ public class Garage {
 	private Double precioEstadia;
 	private Double precioMes;
 	private Integer capacidad;
-	
-	@OneToMany
-	private List<Auto> autosEnGarage;
-	@OneToMany
-	private List<Cochera> cocheras;
+	/*
 	@ManyToOne
-	private Plataforma plataforma;
-	
-	public Boolean agregoAuto(Auto auto1) {
-		if(capacidad > autosEnGarage.size()) {
-			autosEnGarage.add(auto1);
-			return true;
-		}else {
-			return false;
-		}
-	}
-	
-	
+	private Dueño dueño;
+	*/
 	
 	public Long getId() {
 		return id;
@@ -104,37 +91,27 @@ public class Garage {
 		this.capacidad = capacidad;
 	}
 
-	public List<Auto> getAutosEnGarage() {
-		return autosEnGarage;
-	}
 
-	public void setAutosEnGarage(List<Auto> autosEnGarage) {
-		this.autosEnGarage = autosEnGarage;
-	}
-
-	public List<Cochera> getCocheras() {
-		return cocheras;
-	}
-
-	public void setCocheras(List<Cochera> cocheras) {
-		this.cocheras = cocheras;
+	public String getNombre() {
+		return nombre;
 	}
 
 
-
-	public Plataforma getPlataforma() {
-		return plataforma;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+/*
+	public Dueño getDueño() {
+		return dueño;
 	}
 
-
-
-	public void setPlataforma(Plataforma plataforma) {
-		this.plataforma = plataforma;
+	public void setDueño(Dueño dueño) {
+		this.dueño = dueño;
 	}
 	
 	
 	
-	
+	*/
 	
 	
 }
