@@ -22,6 +22,7 @@ public class Garage {
 	private Double precioEstadia;
 	private Double precioMes;
 	private Integer capacidad;
+	private Integer contador=0;
 	/*
 	@ManyToOne
 	private Dueño dueño;
@@ -112,6 +113,14 @@ public class Garage {
 	
 	
 	*/
+
+	public Integer getContador() {
+		return contador;
+	}
+
+	public void setContador(Integer contador) {
+		this.contador =contador;
+	}
 	
 	
 }
