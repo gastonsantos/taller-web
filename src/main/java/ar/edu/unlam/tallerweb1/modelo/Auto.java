@@ -20,7 +20,7 @@ public class Auto {
 	@ManyToOne
 	private Garage garage;
 
-	@OneToOne
+	@ManyToOne
 	private Cliente cliente;
 
 	private String marca;
