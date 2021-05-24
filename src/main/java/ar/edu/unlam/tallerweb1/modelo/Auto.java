@@ -1,15 +1,10 @@
 
 package ar.edu.unlam.tallerweb1.modelo;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import javax.persistence.JoinColumn;
-
-
 
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -20,32 +15,24 @@ public class Auto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 	private String patente;
 
-	
-	
-	
-	
 	@ManyToOne
 	private Garage garage;
-	
 
 	@OneToOne
 	private Cliente cliente;
-	@ManyToOne
-	private Garage garage;
+
 	private String marca;
 	private String modelo;
-	
+
 	public Cliente getCliente() {
 		return cliente;
 	}
-  
+
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-
 
 	public Long getId() {
 		return id;
@@ -54,10 +41,6 @@ public class Auto {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
-
-
 
 	public Garage getGarage() {
 		return garage;
@@ -75,20 +58,6 @@ public class Auto {
 		this.patente = patente;
 	}
 
-
-	@Override
-	public String toString() {
-		return "Auto [id=" + id + ", patente=" + patente + ", cliente="  + ", garage=" + garage + "]";
-	}
-
-	
-
-	
-	
-	
-}
-
-	
 	public String getMarca() {
 		return marca;
 	}
@@ -97,7 +66,7 @@ public class Auto {
 		this.marca = marca;
 	}
 
-	public String getModelo(){
+	public String getModelo() {
 		return modelo;
 	}
 
@@ -111,4 +80,3 @@ public class Auto {
 				+ marca + ", modelo=" + modelo + "]";
 	}
 }
-
