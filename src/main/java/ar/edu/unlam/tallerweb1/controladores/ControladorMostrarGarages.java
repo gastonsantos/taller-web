@@ -45,29 +45,10 @@ public class ControladorMostrarGarages {
 	
 	@RequestMapping(path="confirmarAgregarGarage", method = RequestMethod.POST)
 	public String agregarGarage(
-	//public ModelAndView datosGarage( 
-		@ModelAttribute ("garage") Garage garage1,
-		@RequestParam(value="nombre", required= false)String nombre,
-		@RequestParam(value="calle", required = false)String calle,
-		@RequestParam(value="numero", required = false)Integer numero, 
-		@RequestParam(value="localidad", required=false)String localidad,
-		@RequestParam(value="precioHora", required=true)Double precioHora,
-		@RequestParam(value="precioEstadia", required=true)Double precioEstadia,
-		@RequestParam(value="precioMes", required=true)Double precioMes,
-		@RequestParam(value="capacidad", required=true)Integer capacidad
-	){
-	ModelMap modelo = new ModelMap();
-	modelo.put("nombre", nombre);
-	modelo.put("calle", calle);
-	modelo.put("numero", numero);
-	modelo.put("localidad", localidad);
-	modelo.put("precioHora", precioHora);
-	modelo.put("precioEstadia", precioEstadia);
-	modelo.put("precioMes", precioMes);
-	modelo.put("capacidad", capacidad);
+	@ModelAttribute ("garage") Garage garage1){
 	servicioGarage.agregarGarage(garage1);
 	return "redirect:/lista";
-		//return new ModelAndView("DatosGaragesPorPantalla", modelo);
+		
 	}
 	
 	@RequestMapping("/buscarGarage")

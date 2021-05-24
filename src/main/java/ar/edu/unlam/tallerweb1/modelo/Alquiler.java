@@ -17,8 +17,7 @@ import javax.persistence.OneToOne;
 		@OneToOne
 		private Ticket ticket;
 		
-		@OneToOne
-		private Cochera cochera;
+		
 		 
 		@ManyToOne
 		private Cliente cliente;
@@ -49,14 +48,7 @@ import javax.persistence.OneToOne;
 			this.id = id;
 		}
 
-		public Cochera getCochera() {
-			return cochera;
-		}
-
-		public void setCochera(Cochera cochera) {
-			this.cochera = cochera;
-		}
-		
+	
 		
 		
 		
