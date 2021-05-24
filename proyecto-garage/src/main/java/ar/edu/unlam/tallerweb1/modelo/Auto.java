@@ -17,7 +17,7 @@ public class Auto {
 	
 	private String patente;
 	
-	@OneToOne
+	@ManyToOne
 	private Cliente cliente;
 	
 	@ManyToOne

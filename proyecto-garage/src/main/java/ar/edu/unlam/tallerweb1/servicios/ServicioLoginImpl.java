@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,6 +42,12 @@ public class ServicioLoginImpl implements ServicioLogin {
 	public Cliente consultarClientePorDni(Cliente cliente) {
 		
 		return servicioLoginDao.consultarPorDni(cliente);
+	}
+
+	@Override
+	public List<Cliente> listaDeClientes() {
+		
+		return servicioLoginDao.listaDeClientes();
 	}
 
 	

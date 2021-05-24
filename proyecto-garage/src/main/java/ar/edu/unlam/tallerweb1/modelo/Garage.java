@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 
@@ -24,8 +25,19 @@ public class Garage {
 	private String horario;
 	
 	@OneToMany
-	 private List<Lugar>lugares;
+	private List<Lugar>lugares;
 	
+	@ManyToOne
+	private Localidad localidad;
+	
+	 
+	
+	public Localidad getLocalidad() {
+		return localidad;
+	}
+	public void setLocalidad(Localidad localidad) {
+		this.localidad = localidad;
+	}
 	public List<Lugar> getLugares() {
 		return lugares;
 	}

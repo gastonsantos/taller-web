@@ -7,12 +7,15 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.modelo.Auto;
 import ar.edu.unlam.tallerweb1.modelo.Cliente;
+import ar.edu.unlam.tallerweb1.modelo.Garage;
+import ar.edu.unlam.tallerweb1.modelo.Localidad;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioClienteImpl;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLoginImpl;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRegistroImpl;
@@ -103,17 +106,83 @@ public class testAutos extends SpringTest{
 		Integer dniBuscado = 789456;
 		
 		// Se guardan los clientes en la base de datos en forma de lista
-		List<Cliente> clientesBD =  (List<Cliente>) session().getSession().createCriteria(Cliente.class)
-				.list();
+		Cliente clienteEncontrado =  (Cliente) sessionFactory.getCurrentSession()
+				.createCriteria(Cliente.class)
+				.add(Restrictions.eq("dni", dniBuscado))
+				.uniqueResult();
+			
+			auto.setCliente(clienteEncontrado);
+			
+			System.out.println(auto);
 		
 		//Recorre la liste y busca mediant el dni el cliente al cual asignarle el auto
-		for(Cliente cliente : clientesBD) {
+		/*for(Cliente cliente : clientesBD) {
 			if(cliente.getDni().equals(dniBuscado)) {
 				auto.setCliente(cliente);
 				System.out.println(auto);
 			}
-		}
+		}*/
 		
 	}
+	
+	@Test
+	@Transactional
+	@Rollback
+	public void queSePuedeAsignarUnAutoAUnGarage() {
+		
+		RepositorioClienteImpl repo = new RepositorioClienteImpl(sessionFactory);
+		ServicioRegistroImpl reg = new ServicioRegistroImpl(repo);
+		ServicioLoginImpl log = new ServicioLoginImpl(repo);
+		
+		Auto auto1 = new Auto();
+		Auto auto2 = new Auto();
+		Auto auto3 = new Auto();
+		Localidad localidad1 = new Localidad();
+		Localidad localidad2 = new Localidad();
+		Garage garage1 = new Garage();
+		Garage garage2 = new Garage();
+		Garage garage3 = new Garage();
+		
+		auto1.setPatente("123asd");
+		auto2.setPatente("qwe456");
+		auto3.setPatente("ghj456");
+		localidad1.setLocalidad("Moron");
+		localidad2.setLocalidad("Merlo");
+		garage1.setNombre("asd");
+		garage2.setNombre("qwe");
+		garage3.setNombre("nose");
+		garage1.setLocalidad(localidad2);
+		garage2.setLocalidad(localidad1);
+		garage3.setLocalidad(localidad1);
+		
+		reg.registrarLocalidad(localidad2);
+		reg.registrarLocalidad(localidad1);
+		
+		reg.registrarGarage(garage1);
+		reg.registrarGarage(garage2);
+		reg.registrarGarage(garage3);
+		
+		reg.registrarAuto(auto1);
+		reg.registrarAuto(auto2);
+		reg.registrarAuto(auto3);
+		
+		String garageBuscado = "Merlo";
+		String nombreBuscado = "asd";
+		
+		Garage garageEncontrado = (Garage) sessionFactory.getCurrentSession()
+				.createCriteria(Garage.class)
+				.createAlias("localidad", "garageBuscado")
+				.createAlias("garageBuscado.localidad", "localidadBuscada")
+				.createAlias("nombre", "nombreGarage")
+				.add(Restrictions.eq("localiadadBuscada", garageBuscado))
+				.add(Restrictions.eq("nombreGarage", nombreBuscado))
+				.uniqueResult();
+		
+		auto1.setGarage(garageEncontrado);
+		
+		System.out.println(auto1);
+		
+	}
+	
     
 }

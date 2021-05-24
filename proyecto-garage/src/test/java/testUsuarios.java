@@ -16,6 +16,8 @@ import ar.edu.unlam.tallerweb1.controladores.ControladorLogin;
 import ar.edu.unlam.tallerweb1.controladores.ControladorRegistro;
 import ar.edu.unlam.tallerweb1.modelo.Auto;
 import ar.edu.unlam.tallerweb1.modelo.Cliente;
+import ar.edu.unlam.tallerweb1.modelo.Garage;
+import ar.edu.unlam.tallerweb1.modelo.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioClienteImpl;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
@@ -69,12 +71,13 @@ public class testUsuarios extends SpringTest{
 	@Rollback
 	public void queSePuedaConcultarUnClienteALaBD() {
 		
-		Cliente usuario1 = new Cliente();
-		Cliente usuario2 = new Cliente();
-		
 		RepositorioClienteImpl repo = new RepositorioClienteImpl(sessionFactory);
 		ServicioRegistroImpl reg = new ServicioRegistroImpl(repo);
 		ServicioLoginImpl log = new ServicioLoginImpl(repo);
+		
+		Cliente usuario1 = new Cliente();
+		Cliente usuario2 = new Cliente();
+		
 		usuario1.setNombre("pepe");
 		usuario1.setApellido("rodriguez");
 		usuario1.setEmail("pepito@hotmail.com");
@@ -90,6 +93,8 @@ public class testUsuarios extends SpringTest{
 		reg.agregarCliente(usuario1);
 		reg.agregarCliente(usuario2);
 		
+		System.out.println(log.listaDeClientes());
+		
 		List<Cliente> clienteEncontrado =  (List<Cliente>) sessionFactory.getCurrentSession()
 				.createCriteria(Cliente.class)
 				.add(Restrictions.eq("dni", usuario1.getDni()))
@@ -98,8 +103,41 @@ public class testUsuarios extends SpringTest{
 		assertEquals(1, clienteEncontrado.size());
 		
 		
+		
+		
 	}
 	
-
+	@Test
+	@Transactional
+	@Rollback
+	public void queElClientePuedaPagarElAlquiler() {
+		
+		RepositorioClienteImpl repo = new RepositorioClienteImpl(sessionFactory);
+		ServicioRegistroImpl reg = new ServicioRegistroImpl(repo);
+		ServicioLoginImpl log = new ServicioLoginImpl(repo);
+		
+		Cliente usuario1 = new Cliente();
+		Auto auto1 = new Auto();
+		Garage garage1 = new Garage();
+		Localidad localidad = new Localidad();
+		
+		usuario1.setNombre("pepe");
+		usuario1.setApellido("rodriguez");
+		usuario1.setEmail("pepito@hotmail.com");
+		usuario1.setPassword("123");
+		usuario1.setDni(1234564);
+		
+		garage1.setNombre("nose");
+		
+		
+		auto1.setPatente("asd123");
+		auto1.setCliente(usuario1);
+		
+		reg.agregarCliente(usuario1);
+		
+		
+		
+	}
+	
 
 }

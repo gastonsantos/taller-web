@@ -18,14 +18,10 @@
 	<body>
 		<main class="container"> <!-- Clase de Bootstrap. Hace que los elementos no lleguen hasta el borde -->
 			<form:form  action="procesarRegistroAuto" method="POST" modelAttribute="auto" class="row g-3">
-			<h1 class="mt-3">Registro</h1>
+			<h1 class="mt-3">Registro de auto</h1>
 				<div class="col-md-6">			
 		    <label for="patente" class="form-label control-label">Patente</label>
 		    <form:input type="text" class="form-control" id="patente" path="patente"/>
-		  </div>
-		  <div class="col-md-6">			
-		    <label for="dni" class="form-label control-label">DNI</label>
-		    <input type="number" class="form-control" id="dni">
 		  </div>
 		  <div class="col-12">
 		    <button type="submit" class="btn btn-primary control-label mb-3">Registrar</button>

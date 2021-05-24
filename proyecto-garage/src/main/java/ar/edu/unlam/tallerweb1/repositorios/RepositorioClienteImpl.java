@@ -3,6 +3,8 @@ package ar.edu.unlam.tallerweb1.repositorios;
 import ar.edu.unlam.tallerweb1.modelo.Auto;
 import ar.edu.unlam.tallerweb1.modelo.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.DuenioCochera;
+import ar.edu.unlam.tallerweb1.modelo.Garage;
+import ar.edu.unlam.tallerweb1.modelo.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 import java.util.ArrayList;
@@ -34,8 +36,15 @@ public class RepositorioClienteImpl implements RepositorioCliente{
 		
 		final Session session = sessionFactory.getCurrentSession();
 		session.save(cliente);
-		List<Cliente> clientesBD =  (List<Cliente>) session.getSession().createCriteria(Cliente.class)
-				.list();
+	}
+    
+    @Override
+	public void registrarAuto(Auto auto) { 
+			
+			final Session session = sessionFactory.getCurrentSession();
+			session.save(auto);
+		
+		
 	}
 
 	@Override
@@ -78,13 +87,6 @@ public class RepositorioClienteImpl implements RepositorioCliente{
 	}
 
 	@Override
-	public void registrarAuto(Auto auto) {
-		
-		final Session session = sessionFactory.getCurrentSession();
-		session.save(auto);
-	}
-
-	@Override
 	public Cliente consultarPorDni(Cliente cliente) {
 		
 		final Session session = sessionFactory.getCurrentSession();
@@ -94,20 +96,20 @@ public class RepositorioClienteImpl implements RepositorioCliente{
 	}
 
 	@Override
-	public void asignarAuto(Auto auto, Integer dni) {
-		final Session session = sessionFactory.getCurrentSession();
-		Integer dniBuscado = dni;
-		List<Cliente> clientesBD =  (List<Cliente>) session.getSession().createCriteria(Cliente.class)
-				.list();
-		List<Auto> autosBD =  (List<Auto>) session.getSession().createCriteria(Auto.class)
-				.list();
-		for(Cliente cliente : clientesBD) {
-			if(cliente.getDni().equals(dniBuscado)) {
-				auto.setCliente(cliente);
-				System.out.println(auto);
-			}
-		}
+	public List<Cliente> listaDeClientes() {
+		
+		 final Session session = sessionFactory.getCurrentSession();
+		  
+		   List<Cliente> listaClientes = session.createCriteria(Cliente.class)
+				  .list();
+				return listaClientes;  
 	}
+
+
+	
+
+	
+
 
 
 

@@ -1,10 +1,13 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 
@@ -23,7 +26,15 @@ public class Cliente{
 	private String email;
 	private String password;
 
+	@OneToMany
+	List<Auto> autos;
 	
+	public List<Auto> getAutos() {
+		return autos;
+	}
+	public void setAutos(List<Auto> autos) {
+		this.autos = autos;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -70,8 +81,11 @@ public class Cliente{
 	}
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id  + "]";
+		return "Cliente [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", sexo=" + sexo
+				+ ", email=" + email + ", password=" + password + ", autos=" + autos + "]";
 	}
+	
+	
 
 	
 	

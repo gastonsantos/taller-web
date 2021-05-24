@@ -1,8 +1,12 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import java.util.List;
+
 import ar.edu.unlam.tallerweb1.modelo.Auto;
 import ar.edu.unlam.tallerweb1.modelo.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.DuenioCochera;
+import ar.edu.unlam.tallerweb1.modelo.Garage;
+import ar.edu.unlam.tallerweb1.modelo.Localidad;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 // Interface que define los metodos del Repositorio de Usuarios.
@@ -16,9 +20,12 @@ public interface RepositorioCliente {
 	
 	void registrarCliente(Cliente cliente);
 	
-	void registrarAuto(Auto auto);
+	public void registrarAuto(Auto auto);
 	
-	void asignarAuto(Auto auto, Integer dni);
+	List<Cliente> listaDeClientes();
+	
+	
+	
 	// El usuario podra pagar la reserva solo si eligio un garaje, lugar de estacionamiento y plan de alquiler.
 	Cliente pagarReserva();
 	
