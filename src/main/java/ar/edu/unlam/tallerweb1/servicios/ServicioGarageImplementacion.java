@@ -35,16 +35,28 @@ public class ServicioGarageImplementacion implements ServicioGarage {
 	}
 	
 	
-	public Boolean modificarGarage(Garage garage1) {
-		return null;
+	@Override
+	public List<Garage> buscarPorLocalidad(Garage garage1) {
+		List <Garage> lista = repoGarage.buscarPorLocalidad(garage1);
+		return lista;
 	}
-	
-	public Garage buscarPorLocalidad(Garage garage1) {
-		return null;
+
+	@Override
+	public List <Garage> buscarPorPrecioHora(Double precio1, Double precio2) {
+		List <Garage> lista = repoGarage.buscarPorPrecioHora(precio1, precio2);
+		return lista;
 	}
-	public Garage buscarPorMenorPrecio(Garage garage1) {
-		return null;
+
+	@Override
+	public List<Garage> buscarPorPrecioMes(Double precio1, Double precio2) {
+		return repoGarage.buscarPorPrecioMes(precio1, precio2);
 	}
+
+	@Override
+	public List<Garage> buscarPorPrecioEstadia(Double precio1, Double precio2) {
+		return repoGarage.buscarPorPrecioEstadia(precio1, precio2);
+	}
+
 
 	@Override
 	public Boolean asignarAutoaGarage(Garage garage1, Auto auto1) {
@@ -69,7 +81,7 @@ public class ServicioGarageImplementacion implements ServicioGarage {
 		
 		return repoGarage.sacarAutoDegarage(auto, garage);
 	}
-	
+
 	
 	
 }
