@@ -26,33 +26,11 @@ public class ControladorAutoGarage {
 	}
 
 	@RequestMapping("/listaAutoGarage")
-	public String listaMia(Model modelo)  {
-		
-		modelo.addAttribute("garages", listaMia());
-
+	public String Lista(Model modelo){
+		modelo.addAttribute("garages", servicioGarage.consultarGarage());
 		return ("vistaAutoGarage");
-
 	}
 
-	private List<Garage> listaMia() {
-		List<Garage> garages = new ArrayList<Garage>();
 
-		for (int i = 1; i <= 10; i++) {
-			Garage garage1 = new Garage();
-			garage1.setCalle("Arieta");
-			garage1.setCapacidad(5);
-			garage1.setId(1L + i);
-			garage1.setLocalidad("San Justo");
-			garage1.setNombre("Pepe");
-			garage1.setNumero(369);
-			garage1.setPrecioEstadia(369.00);
-			garage1.setPrecioHora(200.00);
-			garage1.setPrecioMes(900.00);
-
-			garages.add(garage1);
-		}
-
-		return garages;
-	}
 
 }
