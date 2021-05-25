@@ -32,6 +32,7 @@ public class ControladorRegistro {
 		modelo.put("cliente", cliente);
 		return new ModelAndView("registro", modelo); //Se le envia a la vista registro el modelo con el objeto usuario
 	}
+	
 	@RequestMapping(path="/procesarRegistro", method=RequestMethod.POST)
 	public ModelAndView procesarRegistroUduario(
 			@ModelAttribute("cliente") Cliente cliente,
