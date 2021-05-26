@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +56,20 @@ public class ServicioRegistroImpl implements ServicioRegistro{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public List<Cliente> listaCliente() {
+		
+		return servicioRegistro.listaDeClientes();
+	}
+
+	@Override
+	public Cliente consultarClientePorId(Cliente cliente) {
+		
+		return servicioRegistro.consultarPorId(cliente);
+	}
+	
+	
 
 
 

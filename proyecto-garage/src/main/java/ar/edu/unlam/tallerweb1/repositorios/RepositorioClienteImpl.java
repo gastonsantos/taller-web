@@ -40,7 +40,7 @@ public class RepositorioClienteImpl implements RepositorioCliente{
     
     @Override
 	public void registrarAuto(Auto auto) { 
-			
+    		
 			final Session session = sessionFactory.getCurrentSession();
 			session.save(auto);
 		
@@ -87,11 +87,11 @@ public class RepositorioClienteImpl implements RepositorioCliente{
 	}
 
 	@Override
-	public Cliente consultarPorDni(Cliente cliente) {
+	public Cliente consultarPorId(Cliente cliente) {
 		
 		final Session session = sessionFactory.getCurrentSession();
 		return (Cliente) session.createCriteria(Cliente.class)
-				.add(Restrictions.eq("dni", cliente.getDni()))
+				.add(Restrictions.eq("id", cliente.getId()))
 				.uniqueResult();
 	}
 
@@ -104,6 +104,7 @@ public class RepositorioClienteImpl implements RepositorioCliente{
 				  .list();
 				return listaClientes;  
 	}
+
 
 
 	

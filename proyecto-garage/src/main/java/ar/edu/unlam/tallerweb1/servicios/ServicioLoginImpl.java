@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioCliente;
+import ar.edu.unlam.tallerweb1.modelo.Auto;
 import ar.edu.unlam.tallerweb1.modelo.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
@@ -39,9 +40,9 @@ public class ServicioLoginImpl implements ServicioLogin {
 	}
 
 	@Override
-	public Cliente consultarClientePorDni(Cliente cliente) {
+	public Cliente consultarClientePorId(Cliente cliente) {
 		
-		return servicioLoginDao.consultarPorDni(cliente);
+		return servicioLoginDao.consultarPorId(cliente);
 	}
 
 	@Override
@@ -49,6 +50,7 @@ public class ServicioLoginImpl implements ServicioLogin {
 		
 		return servicioLoginDao.listaDeClientes();
 	}
+
 
 	
 

@@ -55,7 +55,7 @@ public class RepositorioAutoImpl implements RepositorioAuto{
 		Boolean agregado = false;
 		
 		Auto autoBuscado = consultarAuto(auto);
-		Cliente clienteBuscado = serv.consultarClientePorDni(cliente);
+		Cliente clienteBuscado = serv.consultarClientePorId(cliente);
 		
 		if(autoBuscado != null && clienteBuscado != null) {
 			agregado = true;
