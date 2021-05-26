@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.List;
+
 import ar.edu.unlam.tallerweb1.modelo.Auto;
 import ar.edu.unlam.tallerweb1.modelo.Cliente;
 
@@ -21,4 +23,6 @@ public interface ServicioRegistro {
 	public abstract void eliminarAuto(Auto auto);
 	
 	public abstract Auto consultarAuto(Auto auto);
+	
+	public abstract List<Auto> consultarListaAutosRegistrados();
 }

@@ -27,6 +27,7 @@ pageEncoding="UTF-8"%>
                 <th style="width: 150px;">Precio Hora $$</th>
                 <th style="width: 150px;">Precio Estadia $$</th>
                 <th style="width: 150px;">Precio Mes $$</th>
+                <th style="width: 150px;">Autos En Garage</th>
             </tr>
             <c:forEach var="garage" 
                        items="${garages}"
@@ -40,7 +41,10 @@ pageEncoding="UTF-8"%>
                     <td>${garage.precioHora}</td>
                     <td>${garage.precioEstadia}</td>
                     <td>${garage.precioMes}</td>
-   					<td><a href="${pageContext.request.contextPath}/lista/eliminar/${garage.id}">Eliminar</a></td>
+                    <td> ${garage.contador} </td>
+   					<td> <a href="${pageContext.request.contextPath}/lista/eliminar/${garage.id}">Eliminar Garage</a> </td>
+   					<td> <a href="${pageContext.request.contextPath}/mostrarAutosDeUnGarage/${garage.id}">Mostrar Autos de Garage</a> </td>
+   					<td> <a href="${pageContext.request.contextPath}/mostrarGarage/${garage.id}">Agregar Auto</a> </td>
                 </tr>
             </c:forEach>
 

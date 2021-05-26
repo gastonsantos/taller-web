@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +69,12 @@ public class ServicioRegistroImpl implements ServicioRegistro{
 	public Auto consultarAuto(Auto auto) {
 		return servicioRegistro.consultarAuto(auto);
 		
+	}
+
+	@Override
+	public List<Auto> consultarListaAutosRegistrados() {
+		
+		return servicioRegistro.consultarListaAutosRegistrados();
 	}
 
 

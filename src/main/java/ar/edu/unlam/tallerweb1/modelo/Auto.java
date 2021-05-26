@@ -20,9 +20,10 @@ public class Auto {
 	private String patente;
 	
 	
-	
-	
 	@ManyToOne
+	private Cliente cliente;
+	
+	@ManyToOne(cascade=CascadeType.REMOVE)
 	private Garage garage;
 	
 
@@ -57,7 +58,14 @@ public class Auto {
 		return "Auto [id=" + id + ", patente=" + patente + ", cliente="  + ", garage=" + garage + "]";
 	}
 
-	
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
 
 	
 	

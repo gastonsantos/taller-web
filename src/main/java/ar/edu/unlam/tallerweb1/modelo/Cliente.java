@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 
@@ -17,7 +20,7 @@ public class Cliente{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String nombre;
 	private String apellido;
 	private Integer dni;
@@ -26,9 +29,7 @@ public class Cliente{
 	private String password;
 
 	
-	@OneToOne(cascade= {CascadeType.ALL})
-	@JoinColumn(name = "id")
-	private Auto auto;
+	
 	
 	
 	public String getEmail() {
@@ -79,12 +80,7 @@ public class Cliente{
 	public String toString() {
 		return "Cliente [id=" + id  + "]";
 	}
-	public Auto getAuto() {
-		return auto;
-	}
-	public void setAuto(Auto auto) {
-		this.auto = auto;
-	}
+	
 
 	
 	

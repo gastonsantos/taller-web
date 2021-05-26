@@ -30,7 +30,6 @@ public class RepositorioGarageImp implements RepositorioGarage {
 		  final Session session = sessionFactory.getCurrentSession();
 		  
 		   List<Garage> listaGarage = session.createCriteria(Garage.class)
-				  //.add(Restrictions.eq("nombre", garage1.getNombre()))
 				  .list();
 				return listaGarage;  
 	  }
@@ -40,11 +39,10 @@ public class RepositorioGarageImp implements RepositorioGarage {
 		@Override
 		public Garage  contultarUnGarage(Garage garage1) {
 			final Session session = sessionFactory.getCurrentSession();
+			
 			return (Garage) session.createCriteria(Garage.class)
 					.add(Restrictions.eq("id",garage1.getId()))
 					.uniqueResult();
-	
-			
 		}
 	@Override 
 	public Boolean agregarGarage(Garage garage1) {
@@ -76,8 +74,14 @@ public class RepositorioGarageImp implements RepositorioGarage {
 		Garage g2= contultarUnGarage( garage1);
 		Auto a2 = serv2.consultarAuto(auto1) ;
 		if(g2!=null && a2 !=null && g2.getCapacidad()>g2.getContador()) {
+			
 			a2.setGarage(g2);
 			g2.setContador(g2.getContador()+1);
+			
+			serv2.consultarAuto(auto1).setGarage(g2);
+			//contultarUnGarage( garage1).setContador(contultarUnGarage( garage1).getContador()+1);
+			
+			
 			agrego = true;	
 		}else {
 			agrego= false;
@@ -97,16 +101,23 @@ public class RepositorioGarageImp implements RepositorioGarage {
 							.list();
 		return lista;
 	}
+	
 	@Override
-	public Boolean BuscarAutoEnGarage(Auto auto1, Garage garage1) {
+	//Falta Hacer
+	public Auto BuscarAutoEnGarage(Auto auto1, Garage garage1) {
 		RepositorioClienteImpl repo2 = new RepositorioClienteImpl(sessionFactory);
 		ServicioRegistroImpl serv2 = new ServicioRegistroImpl(repo2);
-		
-		Garage g2= contultarUnGarage( garage1);
-		Auto a2 = serv2.consultarAuto(auto1) ;
-		
-		
-		return true;
+		List<Auto> lista = consultarAutosEnGarage(garage1);
+		Auto buscado = new Auto();
+		for(Auto auto: lista) {
+			if(auto.getId().equals(auto1.getId())) {
+				buscado = auto ;
+			}else {
+				buscado= null;
+			}
+		}
+	
+		return buscado;
 	}
 
 	@Override
@@ -118,11 +129,11 @@ public class RepositorioGarageImp implements RepositorioGarage {
 		
 		final Session session = sessionFactory.getCurrentSession();
 		Boolean salio= false;
-		Garage g2= contultarUnGarage( garage);
-		Auto a2 = serv2.consultarAuto(auto) ;
-		if(g2!=null && a2 !=null) {
-			a2.setGarage(null);
-			g2.setContador(g2.getContador()-1);
+		Auto buscado=BuscarAutoEnGarage( auto,  garage);
+		Garage garage1 = contultarUnGarage(garage);
+		if(buscado!=null && garage1 !=null) {
+			buscado.setGarage(null);
+			garage1.setContador(garage1.getContador()-1);
 			salio = true;	
 		}else {
 			salio= false;
@@ -132,21 +143,49 @@ public class RepositorioGarageImp implements RepositorioGarage {
 
 	}
 		
-		
-	/*	String pat = auto.getPatente();
-		Boolean borro= false;
-		for (Auto e: consultarAutosEnGarage(garage)) {
-			if(e.getPatente().equals(pat)) {
-				consultarAutosEnGarage(garage).remove(e);
-				borro= true;
-				break;
-			}else {
-			borro= false;
-		}
-		
-		}
-	  return borro;
+	
+	
+	@SuppressWarnings({ "deprecation", "unchecked" })
+	@Override
+	public List<Garage> buscarPorLocalidad(Garage garage1) {
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Garage.class)
+				.add(Restrictions.eq("localidad", garage1.getLocalidad()))
+				.list();
 	}
-	*/
+
+	
+	@SuppressWarnings({ "deprecation", "unchecked" })
+	@Override
+	public List<Garage> buscarPorPrecioHora(Double precio1, Double precio2) {
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Garage.class)
+		.add(Restrictions.between("precioHora", precio1, precio2))
+		.list();
+	}
+
+	
+	@SuppressWarnings({ "deprecation", "unchecked" })
+	@Override
+	public List<Garage> buscarPorPrecioMes(Double precio1, Double precio2) {
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Garage.class)
+		.add(Restrictions.between("precioMes", precio1, precio2))
+		.list();
+	}
+
+	
+	@SuppressWarnings({ "deprecation", "unchecked" })
+	@Override
+	public List<Garage> buscarPorPrecioEstadia(Double precio1, Double precio2) {
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Garage.class)
+		.add(Restrictions.between("precioEstadia", precio1, precio2))
+		.list();
+	}
+
+	  
+		
+
 }
 

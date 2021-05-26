@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.repositorios;
 import ar.edu.unlam.tallerweb1.modelo.Auto;
 import ar.edu.unlam.tallerweb1.modelo.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.DuenioCochera;
+import ar.edu.unlam.tallerweb1.modelo.Garage;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 import java.util.ArrayList;
@@ -100,6 +101,16 @@ public class RepositorioClienteImpl implements RepositorioCliente{
 				.uniqueResult();
 	}
 	
+	@Override 
+	  public List<Auto> consultarListaAutosRegistrados() {
+		
+		  final Session session = sessionFactory.getCurrentSession();
+		  
+		   List<Auto> listaAutos = session.createCriteria(Auto.class)
+				  .list();
+				return listaAutos;  
+	  }
+	
 	
 	@Override
 	public Cliente consultarPorDni(Cliente cliente) {
@@ -117,16 +128,20 @@ public class RepositorioClienteImpl implements RepositorioCliente{
 		Integer dniBuscado = dni;
 		List<Cliente> clientesBD =  (List<Cliente>) session.getSession().createCriteria(Cliente.class)
 				.list();
-		List<Auto> autosBD =  (List<Auto>) session.getSession().createCriteria(Auto.class)
-				.list();
+		Auto autos =   (Auto) session.getSession().createCriteria(Auto.class)
+				.add(Restrictions.eq("patente", auto.getPatente()))
+				.uniqueResult();
 		
 	
-		for(Cliente cliente : clientesBD) {
+		for(Cliente cliente : (List<Cliente>) session.getSession().createCriteria(Cliente.class)
+				.list()) {
 			if(cliente.getDni().equals(dniBuscado)) {
-				cliente.setAuto(auto);
-			
+				
+				//cliente.setAuto(auto);
+				auto.setCliente(cliente);
 				session.save(auto);
 				System.out.println(auto);
+				
 			}
 		}
 	}

@@ -27,7 +27,7 @@ public class testAutoGarage extends SpringTest {
 	@Test
     @Transactional 
     @Rollback
-	public void testQueUnAutosIngresanAUnGarage() {
+	public void testQueUnAutoIngresanAUnGarage() {
 		RepositorioGarageImp repo1 = new RepositorioGarageImp(sessionFactory);
 		RepositorioClienteImpl repo2 = new RepositorioClienteImpl(sessionFactory);
 		ServicioGarageImplementacion serv1 = new ServicioGarageImplementacion(repo1);
