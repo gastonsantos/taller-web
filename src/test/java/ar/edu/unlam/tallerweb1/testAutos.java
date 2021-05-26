@@ -59,8 +59,9 @@ public class testAutos extends SpringTest{
 		auto1.setPatente("asd123");
 		
 		auto2.setPatente("wtf321");
-		usuario1.setAuto(auto1);
-		usuario1.setAuto(auto2);
+		auto1.setCliente(usuario1);
+		auto2.setCliente(usuario1);
+		
 		
 		reg.agregarCliente(usuario2);
 		reg.registrarAuto(auto1);
@@ -112,8 +113,8 @@ public class testAutos extends SpringTest{
 		//Recorre la liste y busca mediant el dni el cliente al cual asignarle el auto
 		for(Cliente cliente : clientesBD) {
 			if(cliente.getDni().equals(dniBuscado)) {
-				//auto.setCliente(cliente);
-				cliente.setAuto(auto);
+				auto.setCliente(cliente);
+				//cliente.setAuto(auto);
 				System.out.println(auto);
 			}
 		}

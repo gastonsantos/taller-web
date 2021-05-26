@@ -1,6 +1,7 @@
 
 package ar.edu.unlam.tallerweb1.modelo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,10 +19,12 @@ public class Auto {
 	private String patente;
 
 	@ManyToOne
+	private Cliente cliente;
+	
+	@ManyToOne(cascade=CascadeType.REMOVE)
 	private Garage garage;
 
-	@OneToOne
-	private Cliente cliente;
+	
 
 	private String marca;
 	private String modelo;
@@ -58,21 +61,10 @@ public class Auto {
 		this.patente = patente;
 	}
 
-	public String getMarca() {
-		return marca;
-	}
 
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
+	
 
-	public String getModelo() {
-		return modelo;
-	}
 
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
-	}
 
 	@Override
 	public String toString() {

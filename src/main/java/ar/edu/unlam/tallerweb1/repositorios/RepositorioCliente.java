@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import java.util.List;
+
 import ar.edu.unlam.tallerweb1.modelo.Auto;
 import ar.edu.unlam.tallerweb1.modelo.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.DuenioCochera;
@@ -33,4 +35,6 @@ public interface RepositorioCliente {
 	Boolean EliminarAuto(Auto auto);
 
 	Auto consultarAuto(Auto auto);
+
+	List<Auto> consultarListaAutosRegistrados();
 }

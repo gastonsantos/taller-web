@@ -34,28 +34,6 @@ public class ServicioGarageImplementacion implements ServicioGarage {
 		return repoGarage.consultarGarage();
 	}
 	
-	
-	@Override
-	public List<Garage> buscarPorLocalidad(Garage garage1) {
-		List <Garage> lista = repoGarage.buscarPorLocalidad(garage1);
-		return lista;
-	}
-
-	@Override
-	public List <Garage> buscarPorPrecioHora(Double precio1, Double precio2) {
-		List <Garage> lista = repoGarage.buscarPorPrecioHora(precio1, precio2);
-		return lista;
-	}
-
-	@Override
-	public List<Garage> buscarPorPrecioMes(Double precio1, Double precio2) {
-		return repoGarage.buscarPorPrecioMes(precio1, precio2);
-	}
-
-	@Override
-	public List<Garage> buscarPorPrecioEstadia(Double precio1, Double precio2) {
-		return repoGarage.buscarPorPrecioEstadia(precio1, precio2);
-	}
 
 
 	@Override
@@ -81,6 +59,41 @@ public class ServicioGarageImplementacion implements ServicioGarage {
 		
 		return repoGarage.sacarAutoDegarage(auto, garage);
 	}
+
+
+	
+	
+
+	@Override
+	public List<Garage> buscarPorPrecioHora(Double precio1, Double precio2) {
+		// TODO Auto-generated method stub
+		return repoGarage.buscarPorPrecioHora(precio1, precio2);
+	}
+
+	@Override
+	public List<Garage> buscarPorPrecioMes(Double precio1, Double precio2) {
+		// TODO Auto-generated method stub
+		return repoGarage.buscarPorPrecioMes(precio1, precio2);
+	}
+
+	@Override
+	public List<Garage> buscarPorPrecioEstadia(Double precio1, Double precio2) {
+		// TODO Auto-generated method stub
+		return repoGarage.buscarPorPrecioEstadia(precio1, precio2);
+	}
+
+	@Override
+	public List<Garage> buscarPorLocalidad(Garage garage1) {
+		// TODO Auto-generated method stub
+		return repoGarage.buscarPorLocalidad(garage1);
+	}
+
+	@Override
+	public Auto BuscarAutoEnGarage(Auto auto1, Garage garage1) {
+		
+		return repoGarage.BuscarAutoEnGarage(auto1, garage1);
+	}
+	
 
 	
 	
