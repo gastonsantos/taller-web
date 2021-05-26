@@ -34,12 +34,7 @@ public class ServicioGarageImplementacion implements ServicioGarage {
 		return repoGarage.consultarGarage();
 	}
 	
-	
-	public Boolean modificarGarage(Garage garage1) {
-		return null;
-	}
-	
-	
+
 
 	@Override
 	public Boolean asignarAutoaGarage(Garage garage1, Auto auto1) {
@@ -64,6 +59,7 @@ public class ServicioGarageImplementacion implements ServicioGarage {
 		
 		return repoGarage.sacarAutoDegarage(auto, garage);
 	}
+
 
 	
 	
@@ -98,6 +94,7 @@ public class ServicioGarageImplementacion implements ServicioGarage {
 		return repoGarage.BuscarAutoEnGarage(auto1, garage1);
 	}
 	
+
 	
 	
 }

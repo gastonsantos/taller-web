@@ -63,6 +63,7 @@ public class RepositorioGarageImp implements RepositorioGarage {
 		return true;
 	}
 
+
 	@Override
 	public Boolean asignarAutoaGarage(Garage garage1, Auto auto1) {
 		RepositorioClienteImpl repo2 = new RepositorioClienteImpl(sessionFactory);
@@ -107,6 +108,7 @@ public class RepositorioGarageImp implements RepositorioGarage {
 	public Auto BuscarAutoEnGarage(Auto auto1, Garage garage1) {
 		RepositorioClienteImpl repo2 = new RepositorioClienteImpl(sessionFactory);
 		ServicioRegistroImpl serv2 = new ServicioRegistroImpl(repo2);
+
 		List<Auto> lista = consultarAutosEnGarage(garage1);
 		Auto buscado = new Auto();
 		for(Auto auto: lista) {
@@ -118,6 +120,43 @@ public class RepositorioGarageImp implements RepositorioGarage {
 		}
 	
 		return buscado;
+}
+	@SuppressWarnings({ "deprecation", "unchecked" })
+	@Override
+	public List<Garage> buscarPorLocalidad(Garage garage1) {
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Garage.class)
+				.add(Restrictions.eq("localidad", garage1.getLocalidad()))
+				.list();
+	}
+
+	@SuppressWarnings({ "deprecation", "unchecked" })
+	@Override
+	public List<Garage> buscarPorPrecioHora(Double precio1, Double precio2) {
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Garage.class)
+		.add(Restrictions.between("precioHora", precio1, precio2))
+		.list();
+	}
+
+	@SuppressWarnings({ "deprecation", "unchecked" })
+	@Override
+	public List<Garage> buscarPorPrecioMes(Double precio1, Double precio2) {
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Garage.class)
+		.add(Restrictions.between("precioMes", precio1, precio2))
+		.list();
+	}
+
+	@SuppressWarnings({ "deprecation", "unchecked" })
+	@Override
+	public List<Garage> buscarPorPrecioEstadia(Double precio1, Double precio2) {
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Garage.class)
+		.add(Restrictions.between("precioEstadia", precio1, precio2))
+		.list();
+
+
 	}
 
 	@Override
@@ -145,46 +184,7 @@ public class RepositorioGarageImp implements RepositorioGarage {
 		
 	
 	
-	@SuppressWarnings({ "deprecation", "unchecked" })
-	@Override
-	public List<Garage> buscarPorLocalidad(Garage garage1) {
-		final Session session = sessionFactory.getCurrentSession();
-		return session.createCriteria(Garage.class)
-				.add(Restrictions.eq("localidad", garage1.getLocalidad()))
-				.list();
-	}
-
 	
-	@SuppressWarnings({ "deprecation", "unchecked" })
-	@Override
-	public List<Garage> buscarPorPrecioHora(Double precio1, Double precio2) {
-		final Session session = sessionFactory.getCurrentSession();
-		return session.createCriteria(Garage.class)
-		.add(Restrictions.between("precioHora", precio1, precio2))
-		.list();
-	}
-
-	
-	@SuppressWarnings({ "deprecation", "unchecked" })
-	@Override
-	public List<Garage> buscarPorPrecioMes(Double precio1, Double precio2) {
-		final Session session = sessionFactory.getCurrentSession();
-		return session.createCriteria(Garage.class)
-		.add(Restrictions.between("precioMes", precio1, precio2))
-		.list();
-	}
-
-	
-	@SuppressWarnings({ "deprecation", "unchecked" })
-	@Override
-	public List<Garage> buscarPorPrecioEstadia(Double precio1, Double precio2) {
-		final Session session = sessionFactory.getCurrentSession();
-		return session.createCriteria(Garage.class)
-		.add(Restrictions.between("precioEstadia", precio1, precio2))
-		.list();
-	}
-
-	  
 		
 
 }

@@ -69,10 +69,6 @@ public class RepositorioClienteImpl implements RepositorioCliente{
 		return null;
 	}
 
-	@Override
-	public Cliente elegirUnGaraje() {
-		return null;
-	}
 
 	@Override
 	public Cliente elegirUnLugarParaEstacionar() {
@@ -144,6 +140,12 @@ public class RepositorioClienteImpl implements RepositorioCliente{
 				
 			}
 		}
+	}
+
+	@Override
+	public Cliente elegirUnGaraje() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
