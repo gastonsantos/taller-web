@@ -34,35 +34,10 @@ public class RepositorioAutoImpl implements RepositorioAuto{
 
 
 
-
-
 	@Override
 	public void registrarAuto(Auto auto) {
 		// TODO Auto-generated method stub
 		
-	}
-
-
-
-	@Override
-	public Boolean asignarAutoACliente(Auto auto, Cliente cliente) {
-		
-		final Session session = sessionFactory.getCurrentSession();
-		
-		RepositorioClienteImpl repo = new RepositorioClienteImpl(sessionFactory);
-		ServicioLoginImpl serv = new ServicioLoginImpl(repo);
-		
-		Boolean agregado = false;
-		
-		Auto autoBuscado = consultarAuto(auto);
-		Cliente clienteBuscado = serv.consultarClientePorId(cliente);
-		
-		if(autoBuscado != null && clienteBuscado != null) {
-			agregado = true;
-		}else {
-			agregado = false;
-		}
-			return agregado;
 	}
 
 	

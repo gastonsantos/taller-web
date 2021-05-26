@@ -30,7 +30,7 @@ public class ControladorRegistroAuto {
 	@RequestMapping("/mostrarRegistroAuto/{id}")
 	public 	ModelAndView registro(@PathVariable("id") Long id) {
 		ModelMap modelo = new ModelMap(); //Agrupa todo para mandarlo a vista
-		Auto auto = new Auto();//Se crea un usuario vacio para mandarlo vacio para que el formulario se vaya llenando
+		Auto auto = new Auto(); //Se crea un usuario vacio para mandarlo vacio para que el formulario se vaya llenando
 		List<Cliente> clienteBuscado = servicioRegistro.listaCliente();
 		 for(Cliente cliente : clienteBuscado) {
 			 if(cliente.getId().equals(id)) {
@@ -42,7 +42,31 @@ public class ControladorRegistroAuto {
 		 }
 		 return new ModelAndView("registroAuto", modelo); //Se le envia a la vista registro el modelo con el objeto usuario
 	}
+	
 	@RequestMapping(path="/procesarRegistroAuto/{id}", method=RequestMethod.POST)
+	public ModelAndView procesarRegistroAuto(
+			@ModelAttribute("auto") Auto auto,
+			@PathVariable("id") Long id){
+		ModelMap modelo = new ModelMap();
+		try {
+		List<Cliente> clienteBuscado = servicioRegistro.listaCliente();		
+		for(Cliente cliente : clienteBuscado) {
+			 if(cliente.getId().equals(id) && auto.getPatente() != " ") {
+				 modelo.addAttribute("cliente", servicioRegistro.consultarClientePorId(cliente));
+				 auto.setCliente(cliente);
+				 servicioRegistro.registrarAuto(auto);
+				 modelo.put("auto", auto);
+				 
+			 	}
+			}
+		}catch (Exception e){
+			modelo.put("auto", e.getMessage());
+			System.out.println("Error");
+		}
+		return new ModelAndView("redirect:/home", modelo);
+			
+	}
+	/*@RequestMapping(path="/procesarRegistroAuto/{id}", method=RequestMethod.POST)
 	public ModelAndView procesarRegistroAuto(
 			@ModelAttribute("auto") Auto auto,
 			@PathVariable("id") Long id){
@@ -60,7 +84,7 @@ public class ControladorRegistroAuto {
 		
 		return new ModelAndView("redirect:/home", modelo);
 			
-	}
+	}*/
 	
 	
 }

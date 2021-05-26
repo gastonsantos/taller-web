@@ -5,6 +5,7 @@ import ar.edu.unlam.tallerweb1.modelo.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.DuenioCochera;
 import ar.edu.unlam.tallerweb1.modelo.Garage;
 import ar.edu.unlam.tallerweb1.modelo.Localidad;
+import ar.edu.unlam.tallerweb1.modelo.Ticket;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 import java.util.ArrayList;
@@ -71,8 +72,9 @@ public class RepositorioClienteImpl implements RepositorioCliente{
 	}
 	
 	@Override
-	public Cliente pagarReserva() {
+	public Cliente pagarReserva(Ticket ticket) {
 		
+		final Session session = sessionFactory.getCurrentSession();
 		return null;
 	}
 
@@ -103,6 +105,24 @@ public class RepositorioClienteImpl implements RepositorioCliente{
 		   List<Cliente> listaClientes = session.createCriteria(Cliente.class)
 				  .list();
 				return listaClientes;  
+	}
+
+	@Override
+	public List<Auto> listaDeAutos() {
+		
+		final Session session = sessionFactory.getCurrentSession();
+		  
+		   List<Auto> listaAutos = session.createCriteria(Auto.class)
+				  .list();
+				return listaAutos;  
+	}
+
+	@Override
+	public Auto consultarAuto(Auto auto) {
+		final Session session = sessionFactory.getCurrentSession();
+		return (Auto) session.createCriteria(Auto.class)
+				.add(Restrictions.eq("patente", auto.getPatente()))
+				.uniqueResult();
 	}
 
 

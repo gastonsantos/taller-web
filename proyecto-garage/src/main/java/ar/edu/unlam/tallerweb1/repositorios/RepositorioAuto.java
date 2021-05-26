@@ -9,5 +9,5 @@ public interface RepositorioAuto {
 	
 	public Auto consultarAuto(Auto auto);
 	
-	public Boolean asignarAutoACliente(Auto auto, Cliente cliente);
+	
 }

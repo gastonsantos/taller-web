@@ -1,7 +1,9 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,8 +18,14 @@ public class Ticket {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private LocalDate fecha = LocalDate.now();
-	private LocalTime horaEntrada = LocalTime.now();
+	private LocalDate fechaOperacion = LocalDate.now();
+	private LocalTime horaOperacion = LocalTime.now();
+	
+	private String fechaDesde;
+	private String fechaHasta;
+	private String horaDesde;
+	private String horaHasta;
+	private Double precioAPagar;
 	
 	@OneToOne
 	private Auto auto;
@@ -28,6 +36,37 @@ public class Ticket {
 	@ManyToOne
 	private Alquiler alquiler;
 	
+
+	public Double getPrecioAPagar() {
+		return precioAPagar;
+	}
+	public void setPrecioAPagar(Double precioAPagar) {
+		this.precioAPagar = precioAPagar;
+	}
+	public String getFechaDesde() {
+		return fechaDesde;
+	}
+	public void setFechaDesde(String fechaDesde) {
+		this.fechaDesde = fechaDesde;
+	}
+	public String getFechaHasta() {
+		return fechaHasta;
+	}
+	public void setFechaHasta(String fechaHasta) {
+		this.fechaHasta = fechaHasta;
+	}
+	public String getHoraDesde() {
+		return horaDesde;
+	}
+	public void setHoraDesde(String horaDesde) {
+		this.horaDesde = horaDesde;
+	}
+	public String getHoraHasta() {
+		return horaHasta;
+	}
+	public void setHoraHasta(String horaHasta) {
+		this.horaHasta = horaHasta;
+	}
 	public Alquiler getAlquiler() {
 		return alquiler;
 	}
@@ -40,17 +79,17 @@ public class Ticket {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public LocalDate getFecha() {
-		return fecha;
+	public LocalDate getFechaOperacion() {
+		return fechaOperacion;
 	}
-	public void setFecha(LocalDate fecha) {
-		this.fecha = fecha;
+	public void setFechaOperacion(LocalDate fecha) {
+		this.fechaOperacion = fecha;
 	}
-	public LocalTime getHoraEntrada() {
-		return horaEntrada;
+	public LocalTime getHoraOperacion() {
+		return horaOperacion;
 	}
-	public void setHoraEntrada(LocalTime horaEntrada) {
-		this.horaEntrada = horaEntrada;
+	public void setHoraOperacion(LocalTime horaEntrada) {
+		this.horaOperacion = horaEntrada;
 	}
 	public Auto getAuto() {
 		return auto;

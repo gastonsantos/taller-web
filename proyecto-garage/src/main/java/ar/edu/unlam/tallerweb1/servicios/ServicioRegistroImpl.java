@@ -62,11 +62,22 @@ public class ServicioRegistroImpl implements ServicioRegistro{
 		
 		return servicioRegistro.listaDeClientes();
 	}
+	
+	@Override
+	public List<Auto> listaAuto(){
+		return servicioRegistro.listaDeAutos();
+	}
 
 	@Override
 	public Cliente consultarClientePorId(Cliente cliente) {
 		
 		return servicioRegistro.consultarPorId(cliente);
+	}
+
+	@Override
+	public Auto consultarAuto(Auto auto) {
+		
+		return servicioRegistro.consultarAuto(auto);
 	}
 	
 	

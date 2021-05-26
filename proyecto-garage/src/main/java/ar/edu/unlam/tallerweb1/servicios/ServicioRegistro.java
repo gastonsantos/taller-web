@@ -23,4 +23,8 @@ public interface ServicioRegistro {
 	public abstract List<Cliente> listaCliente();
 	
 	public abstract Cliente consultarClientePorId(Cliente cliente);
+
+	List<Auto> listaAuto();
+	
+	public abstract Auto consultarAuto(Auto auto);
 }
