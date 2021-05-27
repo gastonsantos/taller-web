@@ -11,17 +11,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Auto;
 import ar.edu.unlam.tallerweb1.modelo.Cliente;
+import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRegistro;
 
 @Controller
 public class ControladorRegistro {
 	
 	private ServicioRegistro servicioRegistro;
-//	private ServicioLogin servicioLogin;
+	private ServicioLogin servicioLogin;
 	
 	@Autowired
-	public ControladorRegistro(ServicioRegistro servicioRegistro){
+	public ControladorRegistro(ServicioRegistro servicioRegistro, ServicioLogin servicioLogin){
 		this.servicioRegistro = servicioRegistro;
+		this.servicioLogin = servicioLogin;
 	}
 	
 	
@@ -39,10 +41,8 @@ public class ControladorRegistro {
 			) {
 		//Validar que la password sea igual a la repassword
 		ModelMap modelo = new ModelMap();
-		if(cliente.getPassword().equals(repass) 
-				&& cliente.getNombre().length() > 1 
-				&& cliente.getApellido().length() > 1
-				/*&& usuario.getEmail() != servicioLogin.verificarUsuario(usuario).getEmail()*/) {
+		Cliente verif = servicioLogin.verificarCorreo(cliente);
+		if(cliente.getPassword().equals(repass) && verif == null) {
 			modelo.put("mensaje", "Usuario registrado correctamente " + cliente.getEmail());
 				servicioRegistro.agregarCliente(cliente);
 				

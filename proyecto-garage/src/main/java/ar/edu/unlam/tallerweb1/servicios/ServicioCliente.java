@@ -12,6 +12,8 @@ public interface ServicioCliente {
 	public Cliente elegirUnGaraje();
 
 	public Cliente elegirUnLugarParaEstacionar();
+
+	public Cliente consultarClientePorId(Long id);
 	
 	
 

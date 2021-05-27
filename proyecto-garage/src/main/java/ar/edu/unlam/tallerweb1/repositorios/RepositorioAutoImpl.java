@@ -32,13 +32,5 @@ public class RepositorioAutoImpl implements RepositorioAuto{
 				.uniqueResult();
 	}
 
-
-
-	@Override
-	public void registrarAuto(Auto auto) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	
 }

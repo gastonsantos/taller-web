@@ -29,7 +29,7 @@
 		  </div>
 		  <div class="col-12">
 		    <label for="dni" class="form-label control-label">DNI</label>
-		    <input type="number" class="form-control" id="dni" name="dni">
+		    <input type="number" class="form-control" id="dni" name="dni"/>
 		  </div>
 		  <div class="col-12">
 		    <label for="email" class="form-label control-label">Correo electronico</label>

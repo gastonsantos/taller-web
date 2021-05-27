@@ -34,15 +34,15 @@ public class ServicioLoginImpl implements ServicioLogin {
 	}
 
 	@Override
-	public Cliente verificarCliente(Cliente cliente) {
+	public Cliente verificarCorreo(Cliente cliente) {
 		
 		return servicioLoginDao.verificarCorreo(cliente);
 	}
 
 	@Override
-	public Cliente consultarClientePorId(Cliente cliente) {
+	public Cliente consultarClientePorId(Long dni) {
 		
-		return servicioLoginDao.consultarPorId(cliente);
+		return servicioLoginDao.consultarPorId(dni);
 	}
 
 	@Override

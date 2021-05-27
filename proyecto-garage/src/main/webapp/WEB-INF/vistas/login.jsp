@@ -39,11 +39,11 @@
 				  <button type="submit" class="btn btn-primary mb-3">Iniciar sesion</button>
 				</form:form>
 				<%--Bloque que es visible si el elemento error no está vacío	--%>
-				<c:if test="${not empty error}">
+				<c:if test="${not empty Error}">
 				<div class="alert alert-danger d-flex align-items-center" role="alert">
 				  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
 				  <div>
-				    ${error}
+				    ${Error}
 				  </div>
 				</div>				        
 			        <br>				        	        

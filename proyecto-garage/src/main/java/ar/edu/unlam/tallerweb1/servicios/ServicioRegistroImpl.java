@@ -69,9 +69,9 @@ public class ServicioRegistroImpl implements ServicioRegistro{
 	}
 
 	@Override
-	public Cliente consultarClientePorId(Cliente cliente) {
+	public Cliente consultarClientePorId(Long id) {
 		
-		return servicioRegistro.consultarPorId(cliente);
+		return servicioRegistro.consultarPorId(id);
 	}
 
 	@Override

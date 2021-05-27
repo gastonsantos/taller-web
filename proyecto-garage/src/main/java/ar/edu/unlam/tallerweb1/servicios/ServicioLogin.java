@@ -10,9 +10,9 @@ public interface ServicioLogin {
 
 	Cliente consultarCliente(Cliente cliente);
 	
-	Cliente verificarCliente(Cliente cliente);
+	Cliente verificarCorreo(Cliente cliente);
 	
-	Cliente consultarClientePorId(Cliente cliente);
+	Cliente consultarClientePorId(Long cliente);
 	
 	List<Cliente> listaDeClientes();
 	

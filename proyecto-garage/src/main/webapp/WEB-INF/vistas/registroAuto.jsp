@@ -22,7 +22,6 @@
 		    <link href="css/bootstrap.min.css" rel="stylesheet" >-->
 		    <!-- Bootstrap theme
 		    <link href="css/bootstrap-theme.min.css" rel="stylesheet"> -->
-		    <link href="css/estilos.css" rel="stylesheet">
 		    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 		    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 	</head>
@@ -31,7 +30,7 @@
 			<form:form  action="${pageContext.request.contextPath}/procesarRegistroAuto/${cliente.id}" method="POST" modelAttribute="auto" class="row g-3">
 			<h1 class="mt-3">Registro de auto</h1>
 				<div class="col-md-6">			
-		    <label for="patente" class="form-label control-label">Patente</label>
+		    <label for="patente" class="form-label control-label" required>Patente</label>
 		    <form:input type="text" class="form-control" id="patente" path="patente"/>
 		  </div>
 		  <div class="col-12">
@@ -43,9 +42,7 @@
 				<c:if test="${not empty error}">
 				<div class="alert alert-danger d-flex align-items-center" role="alert">
 				  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-				  <div>
-				    ${error}
-				  </div>
+				  ${error}
 				</div>				        
 			        <br>				        	        
 		        </c:if>

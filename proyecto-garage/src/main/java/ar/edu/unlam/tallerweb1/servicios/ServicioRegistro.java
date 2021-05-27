@@ -22,7 +22,7 @@ public interface ServicioRegistro {
 	
 	public abstract List<Cliente> listaCliente();
 	
-	public abstract Cliente consultarClientePorId(Cliente cliente);
+	public abstract Cliente consultarClientePorId(Long id);
 
 	List<Auto> listaAuto();
 	

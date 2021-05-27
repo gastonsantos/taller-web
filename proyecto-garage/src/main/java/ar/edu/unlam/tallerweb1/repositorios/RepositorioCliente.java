@@ -15,7 +15,7 @@ public interface RepositorioCliente {
 	
 	Cliente consultarCliente (Cliente cliente);
 	
-	Cliente consultarPorId(Cliente id);
+	Cliente consultarPorId(Long id);
 	
 	Cliente verificarCorreo(Cliente cliente);
 	

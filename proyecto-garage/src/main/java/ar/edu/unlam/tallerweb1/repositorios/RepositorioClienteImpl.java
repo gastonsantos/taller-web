@@ -89,12 +89,13 @@ public class RepositorioClienteImpl implements RepositorioCliente{
 	}
 
 	@Override
-	public Cliente consultarPorId(Cliente cliente) {
+	public Cliente consultarPorId(Long id) {
 		
 		final Session session = sessionFactory.getCurrentSession();
 		return (Cliente) session.createCriteria(Cliente.class)
-				.add(Restrictions.eq("id", cliente.getId()))
+				.add(Restrictions.eq("id", id))
 				.uniqueResult();
+		//return session.get(Cliente.class, id);
 	}
 
 	@Override
