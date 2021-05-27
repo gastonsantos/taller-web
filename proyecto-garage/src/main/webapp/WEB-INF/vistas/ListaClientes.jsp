@@ -39,6 +39,7 @@
 	            </c:forEach>
 	  </tbody>
 	</table>
+	<a class="btn btn-primary" href="home" role="button">Volver</a>
 		</div>
 </body>
 </html>

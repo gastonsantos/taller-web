@@ -16,10 +16,9 @@
 <h2>Fecha Desde</h2>
 <form:input type="date" name="fechaDesde" path="fechaDesde"/>
 <h2>Fecha Hasta</h2>
-<form:input type="date" name="fechaHasta" path="fechaHasta"/>
+<form:input type="date" name="fechaHasta" path="fechaHasta"/><br>
 
-
-<button type="submit">Calcular</button><br>
+<button type="submit" class="btn btn-primary">Calcular</button>
 </form:form>
 
 </div>

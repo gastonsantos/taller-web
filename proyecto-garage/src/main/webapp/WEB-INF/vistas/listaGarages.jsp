@@ -55,6 +55,7 @@
 	            </c:forEach>
 	  </tbody>
 	</table>
+	<a class="btn btn-primary" href="home" role="button">Volver</a>
 		</div>
     <footer th:replace="layout/layout::footer" class="bg-dark"></footer>
 </body>

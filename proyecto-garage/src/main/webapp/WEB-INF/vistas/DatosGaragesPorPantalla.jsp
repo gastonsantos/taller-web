@@ -40,13 +40,15 @@
                     <td>${garage.precioEstadia}</td>
                     <td>${garage.precioMes}</td>
 						<td><a href="${pageContext.request.contextPath}/lista/eliminar/${garage.id}">Eliminar</a></td>
+						<td> <a href="${pageContext.request.contextPath}/mostrarAutosDeUnGarage/${garage.id}">Autos en garaje</a> </td>
+   						<td> <a href="${pageContext.request.contextPath}/mostrarGarage/${garage.id}">Agregar auto</a> </td>
 						
 	                </tr>
 	                
 	            </c:forEach>
 	  </tbody>
 	</table>
-	<a href="home">Volver</a>
+	<a class="btn btn-primary" href="home" role="button">Volver</a>
 		</div>
     <footer th:replace="layout/layout::footer" class="bg-dark"></footer>
 </body>
